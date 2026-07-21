@@ -1,0 +1,1032 @@
+{
+  "disciplinas": [
+    {
+      "id": "GBC011",
+      "nome": "Empreendedorismo em Informática",
+      "unidade": "FACOM",
+      "periodo": 1,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "fundamentos"
+      ]
+    },
+    {
+      "id": "GBC012",
+      "nome": "Cálculo Diferencial e Integral 1",
+      "unidade": "FAMAT",
+      "periodo": 1,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "calculo"
+      ]
+    },
+    {
+      "id": "GBC013",
+      "nome": "Geometria Analítica e Álgebra Linear",
+      "unidade": "FAMAT",
+      "periodo": 1,
+      "t_horas": 90,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "matematica"
+      ]
+    },
+    {
+      "id": "GBC014",
+      "nome": "Programação Procedimental",
+      "unidade": "FACOM",
+      "periodo": 1,
+      "t_horas": 60,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "programacao"
+      ]
+    },
+    {
+      "id": "GBC015",
+      "nome": "Introdução à Ciência da Computação",
+      "unidade": "FACOM",
+      "periodo": 1,
+      "t_horas": 30,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "fundamentos"
+      ]
+    },
+    {
+      "id": "GBC016",
+      "nome": "Lógica para Computação",
+      "unidade": "FAMAT",
+      "periodo": 1,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "matematica"
+      ]
+    },
+    {
+      "id": "GBC021",
+      "nome": "Profissão em Computação e Informática",
+      "unidade": "FACOM",
+      "periodo": 2,
+      "t_horas": 30,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "fundamentos"
+      ]
+    },
+    {
+      "id": "GBC022",
+      "nome": "Cálculo Diferencial e Integral 2",
+      "unidade": "FAMAT",
+      "periodo": 2,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "calculo"
+      ]
+    },
+    {
+      "id": "GBC023",
+      "nome": "Matemática para a Ciência da Computação",
+      "unidade": "FAMAT",
+      "periodo": 2,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "matematica"
+      ]
+    },
+    {
+      "id": "GBC024",
+      "nome": "Algoritmos e Estruturas de Dados 1",
+      "unidade": "FACOM",
+      "periodo": 2,
+      "t_horas": 60,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "algoritmos"
+      ]
+    },
+    {
+      "id": "GBC025",
+      "nome": "Programação Lógica",
+      "unidade": "FACOM",
+      "periodo": 2,
+      "t_horas": 60,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "programacao"
+      ]
+    },
+    {
+      "id": "GBC026",
+      "nome": "Sistemas Digitais",
+      "unidade": "FACOM",
+      "periodo": 2,
+      "t_horas": 60,
+      "p_horas": 30,
+      "lab": "Lab_Sistemas_Digitais",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "hardware"
+      ]
+    },
+    {
+      "id": "GBC032",
+      "nome": "Cálculo Diferencial e Integral 3",
+      "unidade": "FAMAT",
+      "periodo": 3,
+      "t_horas": 90,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "calculo"
+      ]
+    },
+    {
+      "id": "GBC033",
+      "nome": "Programação Funcional",
+      "unidade": "FACOM",
+      "periodo": 3,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "programacao"
+      ]
+    },
+    {
+      "id": "GBC034",
+      "nome": "Algoritmos e Estruturas de Dados 2",
+      "unidade": "FACOM",
+      "periodo": 3,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "algoritmos"
+      ]
+    },
+    {
+      "id": "GBC035",
+      "nome": "Programação Orientada a Objetos 1",
+      "unidade": "FACOM",
+      "periodo": 3,
+      "t_horas": 30,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "programacao"
+      ]
+    },
+    {
+      "id": "GBC036",
+      "nome": "Arquitetura e Org. de Computadores 1",
+      "unidade": "FACOM",
+      "periodo": 3,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "hardware"
+      ]
+    },
+    {
+      "id": "GBC041",
+      "nome": "Estatística",
+      "unidade": "FAMAT",
+      "periodo": 3,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "estatistica"
+      ]
+    },
+    {
+      "id": "GBC042",
+      "nome": "Teoria dos Grafos",
+      "unidade": "FACOM",
+      "periodo": 4,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "matematica"
+      ]
+    },
+    {
+      "id": "GBC043",
+      "nome": "Sistemas de Banco de Dados",
+      "unidade": "FACOM",
+      "periodo": 4,
+      "t_horas": 60,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "bd"
+      ]
+    },
+    {
+      "id": "GBC044",
+      "nome": "Linguagens Formais e Autômatos",
+      "unidade": "FACOM",
+      "periodo": 4,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "teoria"
+      ]
+    },
+    {
+      "id": "GBC045",
+      "nome": "Sistemas Operacionais",
+      "unidade": "FACOM",
+      "periodo": 4,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "sistemas"
+      ]
+    },
+    {
+      "id": "GBC046",
+      "nome": "Arquitetura e Org. de Computadores 2",
+      "unidade": "FACOM",
+      "periodo": 4,
+      "t_horas": 30,
+      "p_horas": 30,
+      "lab": "Lab_Sistemas_Digitais",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "hardware"
+      ]
+    },
+    {
+      "id": "FAMAT31041",
+      "nome": "Estatística Computacional",
+      "unidade": "FAMAT",
+      "periodo": 4,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "estatistica"
+      ]
+    },
+    {
+      "id": "GBC051",
+      "nome": "Computação Científica e Otimização",
+      "unidade": "FACOM",
+      "periodo": 5,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "algoritmos"
+      ]
+    },
+    {
+      "id": "GBC052",
+      "nome": "Análise de Algoritmos",
+      "unidade": "FACOM",
+      "periodo": 5,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "algoritmos"
+      ]
+    },
+    {
+      "id": "GBC053",
+      "nome": "Gerenciamento de Bancos de Dados",
+      "unidade": "FACOM",
+      "periodo": 5,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "bd"
+      ]
+    },
+    {
+      "id": "GBC054",
+      "nome": "Modelagem de Software",
+      "unidade": "FACOM",
+      "periodo": 5,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "engenharia"
+      ]
+    },
+    {
+      "id": "GBC055",
+      "nome": "Programação Orientada a Objetos 2",
+      "unidade": "FACOM",
+      "periodo": 5,
+      "t_horas": 30,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "programacao"
+      ]
+    },
+    {
+      "id": "GBC056",
+      "nome": "Arquitetura de Redes de Computadores",
+      "unidade": "FACOM",
+      "periodo": 5,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "redes"
+      ]
+    },
+    {
+      "id": "GBC061",
+      "nome": "Gestão Empresarial",
+      "unidade": "FACOM",
+      "periodo": 6,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "fundamentos"
+      ]
+    },
+    {
+      "id": "GBC062",
+      "nome": "Teoria da Computação",
+      "unidade": "FACOM",
+      "periodo": 6,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "teoria"
+      ]
+    },
+    {
+      "id": "GBC063",
+      "nome": "Inteligência Artificial",
+      "unidade": "FACOM",
+      "periodo": 6,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "ia"
+      ]
+    },
+    {
+      "id": "GBC064",
+      "nome": "Engenharia de Software",
+      "unidade": "FACOM",
+      "periodo": 6,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "engenharia"
+      ]
+    },
+    {
+      "id": "GBC065",
+      "nome": "Modelagem e Simulação",
+      "unidade": "FACOM",
+      "periodo": 6,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "sistemas"
+      ]
+    },
+    {
+      "id": "GBC066",
+      "nome": "Arquitetura de Redes TCP/IP",
+      "unidade": "FACOM",
+      "periodo": 6,
+      "t_horas": 30,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "redes"
+      ]
+    },
+    {
+      "id": "GBC071",
+      "nome": "Construção de Compiladores",
+      "unidade": "FACOM",
+      "periodo": 7,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "teoria"
+      ]
+    },
+    {
+      "id": "GBC072",
+      "nome": "Projeto de Graduação 1",
+      "unidade": "FACOM",
+      "periodo": 7,
+      "t_horas": 30,
+      "p_horas": 45,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 30,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "tcc"
+      ]
+    },
+    {
+      "id": "GBC073",
+      "nome": "Inteligência Computacional",
+      "unidade": "FACOM",
+      "periodo": 7,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "ia"
+      ]
+    },
+    {
+      "id": "GBC074",
+      "nome": "Sistemas Distribuídos",
+      "unidade": "FACOM",
+      "periodo": 7,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "sistemas"
+      ]
+    },
+    {
+      "id": "GBC081",
+      "nome": "Direito e Legislação",
+      "unidade": "FACOM",
+      "periodo": 8,
+      "t_horas": 45,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "fundamentos"
+      ]
+    },
+    {
+      "id": "GBC082",
+      "nome": "Projeto de Graduação 2",
+      "unidade": "FACOM",
+      "periodo": 8,
+      "t_horas": 30,
+      "p_horas": 60,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 30,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "tcc"
+      ]
+    },
+    {
+      "id": "GBC083",
+      "nome": "Segurança da Informação",
+      "unidade": "FACOM",
+      "periodo": 8,
+      "t_horas": 60,
+      "p_horas": 0,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "sistemas"
+      ]
+    },
+    {
+      "id": "GBC084",
+      "nome": "Programação para Internet",
+      "unidade": "FACOM",
+      "periodo": 8,
+      "t_horas": 30,
+      "p_horas": 30,
+      "lab": "Lab",
+      "turmas": [
+        {
+          "turma": "S",
+          "alunos": 45,
+          "professorId": null,
+          "situacao": "Ativa",
+          "necessidadesEspeciais": false,
+          "observacao": ""
+        }
+      ],
+      "permiteDobra": true,
+      "grupos": [
+        "programacao"
+      ]
+    }
+  ],
+  "grupos": [
+    "algoritmos",
+    "bd",
+    "calculo",
+    "engenharia",
+    "estatistica",
+    "fundamentos",
+    "hardware",
+    "ia",
+    "matematica",
+    "programacao",
+    "redes",
+    "sistemas",
+    "tcc",
+    "teoria"
+  ]
+}

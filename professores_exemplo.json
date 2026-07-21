@@ -1,0 +1,308 @@
+{
+  "professores": [
+    {
+      "id": "1001",
+      "nome": "Prof. FACOM 01",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [
+        {
+          "dia": "Sex",
+          "bloco": "M1"
+        }
+      ],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1002",
+      "nome": "Prof. FACOM 02",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1003",
+      "nome": "Prof. FACOM 03",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1004",
+      "nome": "Prof. FACOM 04",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [
+        {
+          "dia": "Seg",
+          "bloco": "T3"
+        },
+        {
+          "dia": "Qua",
+          "bloco": "T3"
+        }
+      ],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1005",
+      "nome": "Prof. FACOM 05",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1006",
+      "nome": "Prof. FACOM 06",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1007",
+      "nome": "Prof. FACOM 07",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1008",
+      "nome": "Prof. FACOM 08",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [
+        {
+          "dia": "Ter",
+          "bloco": "M1"
+        }
+      ],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1009",
+      "nome": "Prof. FACOM 09",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1010",
+      "nome": "Prof. FACOM 10",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1011",
+      "nome": "Prof. FACOM 11",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1012",
+      "nome": "Prof. FACOM 12",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1013",
+      "nome": "Prof. FACOM 13",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "1014",
+      "nome": "Prof. FACOM 14",
+      "unidade": "FACOM",
+      "preferencias": {
+        "M1": 2,
+        "M2": 10,
+        "M3": 6,
+        "T1": 6,
+        "T2": 10,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "2001",
+      "nome": "Prof. FAMAT 01",
+      "unidade": "FAMAT",
+      "preferencias": {
+        "M1": 2,
+        "M2": 8,
+        "M3": 6,
+        "T1": 10,
+        "T2": 8,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "2002",
+      "nome": "Prof. FAMAT 02",
+      "unidade": "FAMAT",
+      "preferencias": {
+        "M1": 2,
+        "M2": 8,
+        "M3": 6,
+        "T1": 10,
+        "T2": 8,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "2003",
+      "nome": "Prof. FAMAT 03",
+      "unidade": "FAMAT",
+      "preferencias": {
+        "M1": 2,
+        "M2": 8,
+        "M3": 6,
+        "T1": 10,
+        "T2": 8,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "2004",
+      "nome": "Prof. FAMAT 04",
+      "unidade": "FAMAT",
+      "preferencias": {
+        "M1": 2,
+        "M2": 8,
+        "M3": 6,
+        "T1": 10,
+        "T2": 8,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    },
+    {
+      "id": "2005",
+      "nome": "Prof. FAMAT 05",
+      "unidade": "FAMAT",
+      "preferencias": {
+        "M1": 2,
+        "M2": 8,
+        "M3": 6,
+        "T1": 10,
+        "T2": 8,
+        "T3": 2
+      },
+      "indisponibilidades": [],
+      "areasPreferidas": []
+    }
+  ]
+}

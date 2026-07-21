@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SODD: Configuração do Cenário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+<a href="#app" class="sr-only">Pular para o conteúdo</a>
+
+<header>
+  <div>
+    <h1>SODD: Motor de Otimização</h1>
+    <div class="header-sub">Configuração de cenário</div>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-ghost btn-sm" id="btn-salvar-cenario" title="Salva disciplinas, professores e salas em cenario_editado.json">💾 Salvar cenário</button>
+    <button class="btn btn-ghost btn-sm" id="btn-imprimir-cenario" title="Abre uma versão imprimível do cenário (disciplinas, professores, salas e configuração)">🖨 Imprimir cenário</button>
+    <button class="btn btn-ok    btn-sm" id="btn-ir-otimizar">Otimizar</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Seções do cenário">
+  <button class="tab-btn active" id="btn-disciplinas" role="tab" aria-selected="true" aria-controls="app">
+    Disciplinas<span class="tab-badge" id="bdg-disc" style="display:none">0</span>
+  </button>
+  <button class="tab-btn" id="btn-professores" role="tab" aria-selected="false" aria-controls="app">
+    Professores<span class="tab-badge" id="bdg-prof" style="display:none">0</span>
+  </button>
+  <button class="tab-btn" id="btn-salas" role="tab" aria-selected="false" aria-controls="app">
+    Salas<span class="tab-badge" id="bdg-sala" style="display:none">0</span>
+  </button>
+  <button class="tab-btn" id="btn-areas" role="tab" aria-selected="false" aria-controls="app">Áreas</button>
+  <button class="tab-btn" id="btn-config" role="tab" aria-selected="false" aria-controls="app">Config</button>
+  <button class="tab-btn" id="btn-otimizar" role="tab" aria-selected="false" aria-controls="app">Otimizar</button>
+</nav>
+
+<main id="app"></main>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

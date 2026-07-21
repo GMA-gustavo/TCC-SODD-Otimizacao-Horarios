@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SODD: Configuração do Cenário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --c-accent:         oklch(43% 0.155 258);
+  --c-accent-hover:   oklch(37% 0.14  258);
+  --c-accent-subtle:  oklch(96% 0.022 258);
+  --c-accent-muted:   oklch(87% 0.05  258);
+  --c-accent-text:    oklch(36% 0.12  258);
+
+  --c-bg:             oklch(97%   0.007 258);
+  --c-surface:        oklch(99.5% 0.004 258);
+  --c-surface-2:      oklch(97%   0.009 258);
+  --c-border:         oklch(89%   0.013 258);
+  --c-border-subtle:  oklch(93%   0.008 258);
+
+  --c-text:           oklch(21%   0.017 258);
+  --c-body:           oklch(33%   0.013 258);
+  --c-muted:          oklch(54%   0.011 258);
+  --c-faint:          oklch(71%   0.008 258);
+
+  --c-ok:             oklch(44%   0.145 145);
+  --c-ok-hover:       oklch(38%   0.13  145);
+  --c-ok-bg:          oklch(95.5% 0.028 145);
+  --c-ok-text:        oklch(35%   0.11  145);
+
+  --c-danger:         oklch(47%   0.165  28);
+  --c-danger-bg:      oklch(96.5% 0.022  28);
+  --c-danger-text:    oklch(38%   0.13   28);
+
+  --c-warn:           oklch(57%   0.13   75);
+  --c-warn-bg:        oklch(96%   0.025  75);
+  --c-warn-text:      oklch(40%   0.1    75);
+
+  --shadow-sm: 0 1px 3px oklch(0% 0 0/.07), 0 1px 2px oklch(0% 0 0/.04);
+  --shadow-md: 0 4px 14px oklch(0% 0 0/.08), 0 2px 4px oklch(0% 0 0/.04);
+  --r: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--c-bg);
+  color: var(--c-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+header {
+  background: var(--c-accent);
+  color: oklch(98.5% 0.005 258);
+  padding: 11px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-md);
+}
+header h1 { font-size: 15px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+.header-sub { font-size: 11px; opacity: .6; margin-top: 1px; }
+.header-actions { margin-left: auto; display: flex; gap: 8px; }
+
+header .btn-ghost {
+  background: oklch(99% 0.004 258 / .14);
+  color: oklch(98.5% 0.005 258);
+  border: 1px solid oklch(99% 0.004 258 / .22);
+}
+header .btn-ghost:hover:not(:disabled) { background: oklch(99% 0.004 258 / .22); }
+header .btn-ok {
+  background: var(--c-ok);
+  color: oklch(98.5% 0.005 145);
+  border: none;
+}
+header .btn-ok:hover:not(:disabled) { background: var(--c-ok-hover); }
+
+/* ═══════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════ */
+.tabs {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+  padding: 0 20px;
+  display: flex;
+  gap: 2px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.tab-btn {
+  padding: 11px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--c-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s, background .15s;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--c-accent); background: var(--c-accent-subtle); }
+.tab-btn.active { color: var(--c-accent); border-bottom-color: var(--c-accent); font-weight: 600; }
+.tab-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: -2px; }
+
+.tab-badge {
+  background: var(--c-accent);
+  color: oklch(98.5% 0.005 258);
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 5px;
+  vertical-align: 1px;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.tab-content { display: none; padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+.tab-content.active { display: block; }
+.split { display: grid; grid-template-columns: 1fr 376px; gap: 16px; }
+.split.full { grid-template-columns: 1fr; }
+
+/* ═══════════════════════════════════════════
+   TOOLBAR
+═══════════════════════════════════════════ */
+.toolbar { display: flex; gap: 8px; margin-bottom: 14px; align-items: center; flex-wrap: wrap; }
+.filter-select {
+  padding: 6px 10px;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--c-surface);
+  color: var(--c-body);
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.filter-select:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 0 3px var(--c-accent-subtle); }
+.toolbar-count { font-size: 12px; color: var(--c-muted); margin-left: 2px; }
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: background .15s, color .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+}
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+
+.btn-primary { background: var(--c-accent); color: oklch(98.5% 0.005 258); }
+.btn-primary:hover:not(:disabled) { background: var(--c-accent-hover); }
+
+.btn-secondary { background: var(--c-surface); color: var(--c-body); border: 1px solid var(--c-border); }
+.btn-secondary:hover:not(:disabled) { background: var(--c-surface-2); }
+
+/* Full danger — forms only */
+.btn-danger { background: var(--c-danger); color: oklch(98.5% 0.005 28); }
+.btn-danger:hover:not(:disabled) { background: oklch(42% 0.15 28); }
+
+/* Ghost danger — inline row actions */
+.btn-del { background: transparent; color: var(--c-faint); border: 1px solid transparent; }
+.btn-del:hover:not(:disabled) { background: var(--c-danger-bg); color: var(--c-danger); border-color: var(--c-danger-bg); }
+
+.btn-ok { background: var(--c-ok); color: oklch(98.5% 0.005 145); }
+.btn-ok:hover:not(:disabled) { background: var(--c-ok-hover); }
+
+.btn-sm   { padding: 4px 9px; font-size: 12px; }
+.btn-icon { padding: 4px 6px; }
+
+/* ═══════════════════════════════════════════
+   CARD / TABLE
+═══════════════════════════════════════════ */
+.card {
+  background: var(--c-surface);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--c-border-subtle);
+  overflow: hidden;
+}
+table.dt { width: 100%; border-collapse: collapse; }
+table.dt th {
+  background: var(--c-surface-2);
+  color: var(--c-muted);
+  padding: 9px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .45px;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--c-border);
+}
+table.dt td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--c-border-subtle);
+  vertical-align: middle;
+  font-size: 13px;
+}
+table.dt tr:last-child td { border-bottom: none; }
+table.dt tbody tr:hover td { background: var(--c-accent-subtle); }
+
+.empty td {
+  text-align: center;
+  color: var(--c-faint);
+  padding: 48px 20px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════
+   BADGES
+═══════════════════════════════════════════ */
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.b-blue   { background: oklch(93% 0.038 258); color: var(--c-accent-text); }
+.b-green  { background: var(--c-ok-bg);       color: var(--c-ok-text); }
+.b-yellow { background: var(--c-warn-bg);     color: var(--c-warn-text); }
+.b-red    { background: var(--c-danger-bg);   color: var(--c-danger-text); }
+.b-grey   { background: oklch(93% 0.008 258); color: var(--c-muted); }
+
+/* ═══════════════════════════════════════════
+   PANEL
+═══════════════════════════════════════════ */
+.panel {
+  background: var(--c-surface);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--c-border-subtle);
+  padding: 18px 20px;
+  height: fit-content;
+  position: sticky;
+  top: 68px;
+  animation: panelIn .18s cubic-bezier(.22,1,.36,1);
+}
+.panel h3 {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text);
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 11px;
+  letter-spacing: -.01em;
+}
+.panel.hidden { display: none; }
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ═══════════════════════════════════════════
+   FORMS
+═══════════════════════════════════════════ */
+.fg { margin-bottom: 12px; }
+.fg label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.label-note { font-weight: 400; text-transform: none; font-size: 10px; color: var(--c-faint); letter-spacing: 0; }
+.fg input, .fg select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--c-surface);
+  color: var(--c-body);
+  transition: border-color .15s, box-shadow .15s;
+}
+.fg input::placeholder { color: var(--c-faint); }
+.fg input:focus, .fg select:focus {
+  outline: none;
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px var(--c-accent-subtle);
+}
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hint { font-size: 11px; color: var(--c-faint); margin-top: 4px; line-height: 1.4; }
+
+/* ═══════════════════════════════════════════
+   PREF GRID
+═══════════════════════════════════════════ */
+.pref-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 5px; }
+.pref-cell { text-align: center; }
+.pref-cell span {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: .3px;
+}
+.pref-cell input {
+  width: 100%;
+  text-align: center;
+  padding: 6px 2px;
+  border: 1px solid var(--c-border);
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: border-color .12s, background .12s;
+}
+.pref-cell input:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 0 2px var(--c-accent-subtle); }
+.pref-low  { background: var(--c-danger-bg) !important; border-color: oklch(85% 0.04 28) !important; color: var(--c-danger-text) !important; }
+.pref-high { background: var(--c-ok-bg) !important; border-color: oklch(85% 0.04 145) !important; color: var(--c-ok-text) !important; }
+
+/* ═══════════════════════════════════════════
+   INDISP GRID
+═══════════════════════════════════════════ */
+.indisp-tbl { border-collapse: collapse; width: 100%; font-size: 12px; }
+.indisp-tbl th, .indisp-tbl td { padding: 5px 6px; text-align: center; border: 1px solid var(--c-border-subtle); }
+.indisp-tbl th { background: var(--c-surface-2); color: var(--c-muted); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; }
+.indisp-tbl td.critico { background: var(--c-danger-bg); }
+.indisp-tbl input[type=checkbox] { cursor: pointer; width: 15px; height: 15px; accent-color: var(--c-danger); }
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.notif {
+  position: fixed; bottom: 20px; right: 20px;
+  padding: 10px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; z-index: 9999;
+  color: oklch(98.5% 0.005 145);
+  background: var(--c-text);
+  box-shadow: var(--shadow-md);
+  animation: toastIn .2s cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+}
+.notif.ok  { background: var(--c-ok); }
+.notif.err { background: var(--c-danger); }
+
+@keyframes toastIn {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════
+   RESULT GRADE
+═══════════════════════════════════════════ */
+.grade-tbl { border-collapse: collapse; font-size: 12px; min-width: 480px; }
+.grade-tbl th { background: var(--c-surface-2); color: var(--c-muted); padding: 7px 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; border-bottom: 1px solid var(--c-border); }
+.grade-tbl td { border: 1px solid var(--c-border-subtle); padding: 7px 10px; min-width: 110px; }
+.grade-tbl td.hora { background: var(--c-accent-subtle); font-weight: 700; text-align: center; white-space: nowrap; color: var(--c-accent-text); font-size: 11px; }
+.grade-tbl td.hora.crit { background: var(--c-danger-bg); color: var(--c-danger-text); }
+.grade-tbl td.vago { color: var(--c-faint); text-align: center; }
+.cell-home { background: var(--c-ok-bg) !important; }
+
+/* Report sections */
+.rep-section { margin-bottom: 32px; }
+.rep-h3 { font-size: 16px; font-weight: 700; color: var(--c-text); margin: 0 0 14px; letter-spacing: -.01em; }
+.rep-tbl { border-collapse: collapse; width: 100%; }
+.rep-tbl th { background: var(--c-surface-2); color: var(--c-muted); padding: 10px 13px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; border-bottom: 1px solid var(--c-border); text-align: left; white-space: nowrap; }
+.rep-tbl td { border: 1px solid var(--c-border-subtle); padding: 10px 13px; font-size: 13px; }
+.audit-tbl td { vertical-align: top; }
+/* Tabela dos professores — um pouco maior e mais legível */
+.audit-tbl { font-size: 13.5px; }
+.audit-tbl th { padding: 12px 14px; font-size: 12px; }
+.audit-tbl td { padding: 12px 14px; font-size: 13px; }
+.bdg-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; }
+.bdg { display: inline-block; padding: 4px 11px; border-radius: 10px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.bdg-ok   { background: var(--c-ok-bg);     color: var(--c-ok-text); }
+.bdg-warn { background: var(--c-warn-bg);   color: var(--c-warn-text); }
+.bdg-err  { background: var(--c-danger-bg); color: var(--c-danger-text); }
+.bdg-neu  { background: var(--c-surface-2); color: var(--c-muted); }
+
+/* Status inline */
+#otm-status { padding: 10px 12px; border-radius: 6px; background: var(--c-surface-2); border: 1px solid var(--c-border-subtle); font-size: 13px; line-height: 1.5; }
+.st-ok   { color: var(--c-ok);     font-weight: 700; }
+.st-warn { color: var(--c-warn);   font-weight: 700; }
+.st-err  { color: var(--c-danger); font-weight: 700; }
+.pref-hi { color: var(--c-ok);     font-weight: 700; font-size: 11px; }
+.pref-lo { color: var(--c-danger); font-weight: 700; font-size: 11px; }
+.pref-md { color: var(--c-muted);  font-size: 11px; }
+
+/* ═══════════════════════════════════════════
+   ACCESSIBILITY + MOTION
+═══════════════════════════════════════════ */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="sr-only">Pular para o conteúdo</a>
+
+<header>
+  <div>
+    <h1>SODD: Motor de Otimização</h1>
+    <div class="header-sub">Configuração de cenário</div>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-ghost btn-sm" onclick="salvarCenario()" title="Salva disciplinas, professores e salas em cenario_editado.json">💾 Salvar cenário</button>
+    <button class="btn btn-ok    btn-sm" onclick="mostrarTab('otimizar')">Otimizar</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Seções do cenário">
+  <button class="tab-btn active" id="btn-disciplinas" role="tab" aria-selected="true"
+          aria-controls="tab-disciplinas" onclick="mostrarTab('disciplinas')">
+    Disciplinas<span class="tab-badge" id="bdg-disc" style="display:none">0</span>
+  </button>
+  <button class="tab-btn" id="btn-professores" role="tab" aria-selected="false"
+          aria-controls="tab-professores" onclick="mostrarTab('professores')">
+    Professores<span class="tab-badge" id="bdg-prof" style="display:none">0</span>
+  </button>
+  <button class="tab-btn" id="btn-salas" role="tab" aria-selected="false"
+          aria-controls="tab-salas" onclick="mostrarTab('salas')">
+    Salas<span class="tab-badge" id="bdg-sala" style="display:none">0</span>
+  </button>
+  <button class="tab-btn" id="btn-config" role="tab" aria-selected="false"
+          aria-controls="tab-config" onclick="mostrarTab('config')">Config</button>
+  <button class="tab-btn" id="btn-otimizar" role="tab" aria-selected="false"
+          aria-controls="tab-otimizar" onclick="mostrarTab('otimizar')">Otimizar</button>
+</nav>
+
+<main id="main">
+
+<!-- ══ DISCIPLINAS ══════════════════════════ -->
+<div class="tab-content active" id="tab-disciplinas" role="tabpanel" aria-labelledby="btn-disciplinas">
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="novaDisc()">+ Nova Disciplina</button>
+    <button class="btn btn-secondary" onclick="document.getElementById('file-disc').click()">Importar JSON</button>
+    <input type="file" id="file-disc" accept=".json" style="display:none" onchange="onImportDisc(event)">
+    <select id="filtro-grupo" class="filter-select" onchange="renderDiscs()" aria-label="Filtrar por grupo">
+      <option value="">Todos os grupos</option>
+    </select>
+    <span id="disc-count" class="toolbar-count"></span>
+  </div>
+  <div class="split full" id="layout-disc">
+    <div class="card">
+      <table class="dt" aria-label="Lista de disciplinas">
+        <thead><tr>
+          <th scope="col">Código</th><th scope="col">Nome</th><th scope="col">Per.</th>
+          <th scope="col">Grupo</th><th scope="col">T (h)</th><th scope="col">P (h)</th>
+          <th scope="col">Lab</th><th scope="col">Turmas</th><th scope="col"></th>
+        </tr></thead>
+        <tbody id="tbody-disc">
+          <tr class="empty"><td colspan="9">
+            Nenhuma disciplina cadastrada.<br>
+            <small>Clique em <strong>+ Nova Disciplina</strong> ou importe um JSON para começar.</small>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel hidden" id="panel-disc" role="region" aria-label="Editar disciplina">
+      <h3 id="panel-disc-h">Nova Disciplina</h3>
+      <div class="frow">
+        <div class="fg">
+          <label for="di-id">Código</label>
+          <input id="di-id" placeholder="ex: GBC014">
+        </div>
+        <div class="fg">
+          <label for="di-periodo">Período</label>
+          <select id="di-periodo">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label for="di-nome">Nome</label>
+        <input id="di-nome" placeholder="Nome completo da disciplina">
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label for="di-unidade">Unidade</label>
+          <select id="di-unidade"><option>FACOM</option><option>FAMAT</option></select>
+        </div>
+        <div class="fg">
+          <label for="di-grupo">Grupo Temático</label>
+          <input id="di-grupo" list="dl-grupos" placeholder="ex: algoritmos">
+          <datalist id="dl-grupos"></datalist>
+        </div>
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label for="di-t">Carga Teórica (horas)</label>
+          <input type="number" id="di-t" min="0" step="15" value="60" oninput="atuBlocos()">
+          <div class="hint" id="di-t-bl">2 blocos/sem</div>
+        </div>
+        <div class="fg">
+          <label for="di-p">Carga Prática (horas)</label>
+          <input type="number" id="di-p" min="0" step="15" value="0" oninput="atuBlocos()">
+          <div class="hint" id="di-p-bl">0 blocos/sem</div>
+        </div>
+      </div>
+      <div class="fg" id="di-lab-wrap" style="display:none">
+        <label for="di-lab">Tipo de Laboratório</label>
+        <select id="di-lab" onchange="onLabChange()">
+          <option value="Lab">Lab (Computação)</option>
+          <option value="Lab_Sistemas_Digitais">Lab Sistemas Digitais</option>
+          <option value="__outro__">Outro (personalizado)…</option>
+        </select>
+        <input id="di-lab-custom" style="display:none;margin-top:6px" placeholder="Nome do tipo de laboratório">
+      </div>
+      <div class="fg">
+        <label style="display:flex;align-items:center;justify-content:space-between">
+          <span>Turmas <span class="label-note">cada turma tem professor, vagas e situação próprios</span></span>
+          <button class="btn btn-secondary btn-sm" type="button" onclick="addTurmaRow()">+ Adicionar turma</button>
+        </label>
+        <div style="overflow-x:auto">
+          <table class="dt" style="margin-top:6px" aria-label="Turmas da disciplina">
+            <thead><tr>
+              <th scope="col">Turma</th><th scope="col">Vagas Ofert.</th><th scope="col">Professor</th>
+              <th scope="col">Situação</th><th scope="col">Nec. especiais</th><th scope="col">Observação</th><th scope="col"></th>
+            </tr></thead>
+            <tbody id="tbody-turmas"></tbody>
+          </table>
+        </div>
+        <div class="hint">Vagas Ofertadas acima da capacidade do lab (padrão: 40) gera split A+B na turma</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <button class="btn btn-primary" style="flex:1" onclick="salvarDisc()">Salvar</button>
+        <button class="btn btn-secondary" onclick="fecharDisc()" aria-label="Fechar painel">✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROFESSORES ══════════════════════════ -->
+<div class="tab-content" id="tab-professores" role="tabpanel" aria-labelledby="btn-professores">
+  <div class="toolbar">
+    <button class="btn btn-primary"   onclick="novoProf()">+ Novo Professor</button>
+    <button class="btn btn-secondary" onclick="carregarCSV()">Carregar CSV da UFU</button>
+    <button class="btn btn-secondary" onclick="document.getElementById('file-prof').click()">Importar JSON</button>
+    <input type="file" id="file-prof" accept=".json" style="display:none" onchange="onImportProf(event)">
+  </div>
+  <div class="split full" id="layout-prof">
+    <div class="card">
+      <table class="dt" aria-label="Lista de professores">
+        <thead><tr>
+          <th scope="col">SIAPE</th><th scope="col">Nome</th><th scope="col">Unidade</th>
+          <th scope="col">Preferências</th><th scope="col">Indisponibilidades</th><th scope="col"></th>
+        </tr></thead>
+        <tbody id="tbody-prof">
+          <tr class="empty"><td colspan="6">
+            Nenhum professor cadastrado.<br>
+            <small>Use <strong>Carregar CSV da UFU</strong> para importar os professores ativos.</small>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel hidden" id="panel-prof" role="region" aria-label="Editar professor">
+      <h3 id="panel-prof-h">Novo Professor</h3>
+      <div class="frow">
+        <div class="fg">
+          <label for="pr-id">SIAPE</label>
+          <input id="pr-id" placeholder="ex: FACOM_1234">
+        </div>
+        <div class="fg">
+          <label for="pr-unidade">Unidade</label>
+          <select id="pr-unidade"><option>FACOM</option><option>FAMAT</option></select>
+        </div>
+      </div>
+      <div class="fg">
+        <label for="pr-nome">Nome</label>
+        <input id="pr-nome" placeholder="ex: Prof. João">
+      </div>
+      <div class="fg">
+        <label>Preferências de Horário
+          <span class="label-note">1 = evitar · 10 = preferido</span>
+        </label>
+        <div class="pref-grid" id="pref-grid"></div>
+        <div class="hint" style="margin-top:5px">Manhã: M1 (07:10) M2 (08:50) M3 (10:40) &nbsp;·&nbsp; Tarde: T1 (13:10) T2 (14:50) T3 (16:50)</div>
+      </div>
+      <div class="fg">
+        <label>Indisponibilidades
+          <span class="label-note">marque os horários bloqueados</span>
+        </label>
+        <table class="indisp-tbl" id="indisp-grid" aria-label="Grade de indisponibilidades"></table>
+        <div class="hint">Slots marcados nunca recebem alocação do solver</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <button class="btn btn-primary" style="flex:1" onclick="salvarProf()">Salvar</button>
+        <button class="btn btn-secondary" onclick="fecharProf()" aria-label="Fechar painel">✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SALAS ══════════════════════════════ -->
+<div class="tab-content" id="tab-salas" role="tabpanel" aria-labelledby="btn-salas">
+  <div class="toolbar">
+    <button class="btn btn-primary"   onclick="novaSala()">+ Nova Sala</button>
+    <button class="btn btn-secondary" onclick="gerarSalasUFU()">Gerar padrão UFU</button>
+  </div>
+  <div class="split full" id="layout-sala">
+    <div class="card">
+      <table class="dt" aria-label="Lista de salas">
+        <thead><tr>
+          <th scope="col">ID</th><th scope="col">Tipo</th><th scope="col">Capacidade</th><th scope="col"></th>
+        </tr></thead>
+        <tbody id="tbody-sala">
+          <tr class="empty"><td colspan="4">
+            Nenhuma sala cadastrada.<br>
+            <small>Clique em <strong>Gerar padrão UFU</strong> para criar a configuração padrão (10 salas + 4 labs).</small>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel hidden" id="panel-sala" role="region" aria-label="Editar sala">
+      <h3 id="panel-sala-h">Nova Sala</h3>
+      <div class="fg">
+        <label for="sl-id">ID</label>
+        <input id="sl-id" placeholder="ex: Sala_01 ou Lab_Comp_1">
+      </div>
+      <div class="fg">
+        <label for="sl-tipo">Tipo</label>
+        <select id="sl-tipo" onchange="onSalaTipoChange()">
+          <option value="Normal">Normal (sala de aula)</option>
+          <option value="Lab">Lab (Computação)</option>
+          <option value="Lab_Sistemas_Digitais">Lab Sistemas Digitais</option>
+          <option value="__outro__">Outro tipo personalizado…</option>
+        </select>
+        <input id="sl-tipo-custom" style="display:none;margin-top:6px" placeholder="Nome do tipo de sala">
+        <div class="hint">Deve corresponder ao campo "Lab" das disciplinas</div>
+      </div>
+      <div class="fg">
+        <label for="sl-cap">Capacidade</label>
+        <input type="number" id="sl-cap" min="1" value="40">
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <button class="btn btn-primary" style="flex:1" onclick="salvarSala()">Salvar</button>
+        <button class="btn btn-secondary" onclick="fecharSala()" aria-label="Fechar painel">✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONFIG ══════════════════════════════ -->
+<div class="tab-content" id="tab-config" role="tabpanel" aria-labelledby="btn-config">
+  <div style="max-width:440px">
+  <div class="card" style="padding:22px">
+    <h3 style="margin:0 0 18px;font-size:15px;font-weight:700;color:var(--c-text);letter-spacing:-.01em">Parâmetros Globais</h3>
+    <div class="fg">
+      <label for="cfg-alunos">Alunos por turma (padrão)</label>
+      <input type="number" id="cfg-alunos" min="1" value="45">
+      <div class="hint">Usado quando a disciplina não define valor próprio</div>
+    </div>
+    <div class="fg">
+      <label for="cfg-cap-lab">Capacidade padrão dos laboratórios</label>
+      <input type="number" id="cfg-cap-lab" min="1" value="40">
+      <div class="hint">Turmas maiores geram split A+B no laboratório</div>
+    </div>
+    <div class="fg">
+      <label for="cfg-criticos">Horários críticos (separados por vírgula)</label>
+      <input type="text" id="cfg-criticos" value="M1,T3">
+      <div class="hint">Blocos com compensação especial na função objetivo</div>
+    </div>
+    <div class="fg">
+      <label for="cfg-tempo">Limite de tempo do solver (segundos)</label>
+      <input type="number" id="cfg-tempo" min="10" max="600" value="60">
+    </div>
+    <button class="btn btn-primary" onclick="salvarConfig()">Salvar configurações</button>
+  </div>
+  </div>
+</div>
+
+<!-- ══ OTIMIZAR ════════════════════════════ -->
+<div class="tab-content" id="tab-otimizar" role="tabpanel" aria-labelledby="btn-otimizar">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto">
+
+    <div class="card" style="padding:20px">
+      <h3 style="margin:0 0 14px;font-size:14px;font-weight:700;color:var(--c-text);letter-spacing:-.01em">Resumo do Cenário</h3>
+      <div style="font-size:13px;color:var(--c-body)">
+
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--c-border-subtle)">
+          <span>Disciplinas</span>
+          <strong id="r-disc">0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--c-border-subtle)">
+          <span>Professores registrados</span>
+          <strong id="r-prof">0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--c-border-subtle);color:var(--c-muted)">
+          <span style="padding-left:10px">↳ receberão sessões</span>
+          <strong id="r-prof-ativos" style="color:var(--c-body)">—</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--c-border-subtle)">
+          <span>Salas cadastradas</span>
+          <strong id="r-sala">0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--c-border-subtle);color:var(--c-muted)">
+          <span style="padding-left:10px">↳ Normais / Labs</span>
+          <strong id="r-sala-det" style="color:var(--c-body)">—</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--c-border-subtle)">
+          <span>Sessões ao solver</span>
+          <strong id="r-sess">—</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0">
+          <span>Com split A+B</span>
+          <strong id="r-split">—</strong>
+        </div>
+
+        <div id="r-avisos" style="margin-top:10px"></div>
+      </div>
+      <div style="height:1px;background:var(--c-border-subtle);margin:14px 0"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="exportarJSON()">Exportar JSON</button>
+        <button class="btn btn-secondary btn-sm"
+                onclick="document.getElementById('file-import').click()">Importar cenário</button>
+        <input type="file" id="file-import" accept=".json" style="display:none"
+               onchange="onImportCenario(event)">
+      </div>
+    </div>
+
+    <div class="card" style="padding:20px">
+      <h3 style="margin:0 0 14px;font-size:14px;font-weight:700;color:var(--c-text);letter-spacing:-.01em">Executar Otimização</h3>
+      <p style="font-size:13px;color:var(--c-muted);margin:0 0 14px;line-height:1.5">
+        Envia o cenário ao solver CP-SAT e exibe a grade resultante.
+      </p>
+      <div class="fg">
+        <label for="nome-exp">Nome do experimento</label>
+        <input id="nome-exp" value="Cenário personalizado">
+      </div>
+      <button class="btn btn-ok" id="btn-otm" style="width:100%;padding:11px;justify-content:center"
+              onclick="otimizar()">Iniciar Otimização</button>
+      <div id="otm-status" style="margin-top:10px;display:none"></div>
+    </div>
+
+  </div>
+
+  <div id="resultado-wrap" style="max-width:1240px;margin:16px auto 0;display:none">
+    <div class="card" style="padding:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+        <span style="font-size:13px;font-weight:700;color:var(--c-text);letter-spacing:-.01em">Resultado da Otimização</span>
+        <button class="btn btn-secondary btn-sm" onclick="exportarRelatorio()" title="Baixa o relatório completo como arquivo HTML">
+          ⬇ Exportar relatório HTML
+        </button>
+      </div>
+      <div id="resultado"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+const S = {
+  disciplinas: [],
+  professores: [],
+  salas: [],
+  grupos: ['algoritmos','bd','calculo','engenharia','estatistica',
+           'fundamentos','hardware','ia','matematica','programacao',
+           'redes','sistemas','tcc','teoria'],
+  config: { alunosPorTurma: 45, capacidadeLabPadrao: 40,
+            horariosCriticos: ['M1','T3'], tempoSolver: 60 },
+  editDisc: null, editProf: null, editSala: null,
+};
+
+const BLOCOS = ['M1','M2','M3','T1','T2','T3'];
+const DIAS   = ['Seg','Ter','Qua','Qui','Sex'];
+const hToB   = h => Math.max(0, Math.round(h / 30));
+// Escapa texto para uso seguro dentro de um atributo HTML (value="...")
+const escAttr = s => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+function toast(msg, tipo = '') {
+  const el = document.createElement('div');
+  el.className = `notif ${tipo}`;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+function mostrarTab(nome) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  document.getElementById(`tab-${nome}`).classList.add('active');
+  const btn = document.getElementById(`btn-${nome}`);
+  btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+  if (nome === 'otimizar') atuResumo();
+}
+
+function atuBadges() {
+  const set = (id, n) => { const el = document.getElementById(id); el.textContent = n; el.style.display = n > 0 ? '' : 'none'; };
+  set('bdg-disc', S.disciplinas.length);
+  set('bdg-prof', S.professores.length);
+  set('bdg-sala', S.salas.length);
+}
+function atuResumo() {
+  atuBadges();
+  document.getElementById('r-disc').textContent = S.disciplinas.length;
+  document.getElementById('r-prof').textContent = S.professores.length;
+  document.getElementById('r-sala').textContent = S.salas.length;
+  const { total, splits } = calcSessoes();
+  document.getElementById('r-sess').textContent  = total;
+  document.getElementById('r-split').textContent = splits;
+
+  // ── Detalhe: professores que receberão sessões ─────────────────────────────
+  // Simula o round-robin de buildInput() sem gerar demandas completas
+  const ORDEM = ['algoritmos','bd','calculo','engenharia','estatistica',
+    'fundamentos','hardware','ia','matematica','programacao','redes','sistemas','tcc','teoria'];
+  const discOrd = [...S.disciplinas].sort((a, b) => {
+    const ga = ORDEM.indexOf(a.grupo ?? 'zzz'), gb = ORDEM.indexOf(b.grupo ?? 'zzz');
+    return ga !== gb ? ga - gb : a.periodo - b.periodo;
+  });
+  const facom = S.professores.filter(p => p.unidade === 'FACOM');
+  const famat = S.professores.filter(p => p.unidade === 'FAMAT');
+  const profsAtivos = new Set();
+  let pFC = 0, pFM = 0;
+  discOrd.forEach(d => {
+    if (!hToB(d.t_horas) && !hToB(d.p_horas)) return;
+    turmasAtivas(d).forEach(t => {
+      if (t.professorId && S.professores.find(p => p.id === t.professorId)) {
+        profsAtivos.add(t.professorId);
+      } else {
+        const pool = d.unidade === 'FACOM' ? facom : famat;
+        if (!pool.length) return;
+        const ptr = d.unidade === 'FACOM' ? pFC++ : pFM++;
+        profsAtivos.add(pool[ptr % pool.length].id);
+      }
+    });
+  });
+  const nAtivos = profsAtivos.size;
+  const nTotal  = S.professores.length;
+  const elAtivos = document.getElementById('r-prof-ativos');
+  if (nTotal > 0) {
+    elAtivos.textContent = nAtivos === nTotal
+      ? `${nAtivos} (todos)`
+      : `${nAtivos} de ${nTotal}`;
+    elAtivos.style.color = nAtivos < nTotal ? 'var(--c-warn-text)' : 'var(--c-ok-text)';
+  } else {
+    elAtivos.textContent = '—';
+  }
+
+  // ── Detalhe: salas por tipo ────────────────────────────────────────────────
+  const normais = S.salas.filter(s => s.tipo === 'Normal').length;
+  const labs    = S.salas.length - normais;
+  document.getElementById('r-sala-det').textContent =
+    S.salas.length > 0 ? `${normais} normais / ${labs} lab${labs !== 1 ? 's' : ''}` : '—';
+
+  // ── Avisos ─────────────────────────────────────────────────────────────────
+  const avisos = [];
+  if (nTotal > 0 && nAtivos < nTotal) {
+    const inativos = nTotal - nAtivos;
+    avisos.push(`<div class="bdg bdg-warn" style="font-size:11px;border-radius:6px;padding:5px 9px;display:block;line-height:1.4">
+      ⚠ ${inativos} professor${inativos > 1 ? 'es' : ''} sem disciplina atribuída não aparecer${inativos > 1 ? 'ão' : 'á'} na grade.
+      As salas também só aparecem se forem usadas — o solver usa o mínimo necessário.
+    </div>`);
+  }
+  if (normais === 0 && S.disciplinas.some(d => hToB(d.t_horas) > 0)) {
+    avisos.push(`<div class="bdg bdg-err" style="font-size:11px;border-radius:6px;padding:5px 9px;display:block;line-height:1.4">
+      ✕ Nenhuma sala Normal cadastrada — aulas teóricas não terão onde ser alocadas.
+    </div>`);
+  }
+  if (labs === 0 && S.disciplinas.some(d => hToB(d.p_horas) > 0)) {
+    avisos.push(`<div class="bdg bdg-err" style="font-size:11px;border-radius:6px;padding:5px 9px;display:block;line-height:1.4">
+      ✕ Nenhum laboratório cadastrado — aulas práticas não terão onde ser alocadas.
+    </div>`);
+  }
+  document.getElementById('r-avisos').innerHTML = avisos.join('<div style="height:5px"></div>');
+}
+function calcSessoes() {
+  let total = 0, splits = 0;
+  const cap = S.config.capacidadeLabPadrao;
+  S.disciplinas.forEach(d => {
+    turmasAtivas(d).forEach(t => {
+      const al = t.alunos ?? S.config.alunosPorTurma;
+      if (hToB(d.t_horas) > 0) total++;
+      if (hToB(d.p_horas) > 0) { if (al > cap) { total += 2; splits++; } else total++; }
+    });
+  });
+  return { total, splits };
+}
+
+// ── Disciplinas / Turmas ────────────────────────────────────────────────────────
+// Disciplina = { id, nome, unidade, grupo, periodo, t_horas, p_horas, lab, turmas: [Turma] }
+// Turma      = { turma, alunos, professorId, situacao, necessidadesEspeciais, observacao }
+function novaTurma() {
+  return { turma: '', alunos: S.config.alunosPorTurma, professorId: '', situacao: 'Ativa', necessidadesEspeciais: false, observacao: '' };
+}
+function migrarDisciplina(d) {
+  if (!Array.isArray(d.turmas) || !d.turmas.length) {
+    d.turmas = [{
+      turma: 'S',
+      alunos: d.alunos ?? S.config.alunosPorTurma,
+      professorId: d.professorId ?? null,
+      situacao: 'Ativa',
+      necessidadesEspeciais: false,
+      observacao: '',
+    }];
+  }
+  delete d.alunos; delete d.professorId;
+  return d;
+}
+function turmasAtivas(d) { return (d.turmas || []).filter(t => t.situacao !== 'Inativa'); }
+
+function atuDatalistGrupos() {
+  document.getElementById('dl-grupos').innerHTML = S.grupos.map(g => `<option value="${g}">`).join('');
+  const sel = document.getElementById('filtro-grupo'), cur = sel.value;
+  sel.innerHTML = '<option value="">Todos os grupos</option>' +
+    S.grupos.map(g => `<option${g===cur?' selected':''}>${g}</option>`).join('');
+}
+
+function renderDiscs() {
+  const filtro = document.getElementById('filtro-grupo').value;
+  const lista  = filtro ? S.disciplinas.filter(d => d.grupo === filtro) : S.disciplinas;
+  document.getElementById('disc-count').textContent =
+    `${lista.length} disciplina(s)${filtro ? ` · grupo "${filtro}"` : ''}`;
+  const tbody = document.getElementById('tbody-disc');
+  if (!lista.length) {
+    tbody.innerHTML = '<tr class="empty"><td colspan="9">Nenhuma disciplina cadastrada.<br><small>Clique em <strong>+ Nova Disciplina</strong> ou importe um JSON para começar.</small></td></tr>';
+    return;
+  }
+  tbody.innerHTML = lista.map(d => {
+    const ri   = S.disciplinas.indexOf(d);
+    const tB   = hToB(d.t_horas), pB = hToB(d.p_horas);
+    const turmas = d.turmas || [];
+    const ativas = turmasAtivas(d);
+    const split  = pB > 0 && turmas.some(t => (t.alunos ?? S.config.alunosPorTurma) > S.config.capacidadeLabPadrao);
+    const turmaBadges = turmas.map(t =>
+      `<span class="badge ${t.situacao === 'Inativa' ? 'b-grey' : 'b-blue'}" title="${t.situacao === 'Inativa' ? 'Inativa' : 'Ativa'}">${t.turma || '?'}</span>`
+    ).join(' ') || '<span style="color:var(--c-faint)">—</span>';
+    return `<tr>
+      <td style="font-family:ui-monospace,'Roboto Mono',monospace;font-size:11px;color:var(--c-muted)">${d.id}</td>
+      <td style="font-weight:500">${d.nome}</td>
+      <td style="text-align:center;color:var(--c-muted)">${d.periodo}º</td>
+      <td><span class="badge b-blue">${d.grupo||'—'}</span></td>
+      <td style="text-align:center">${d.t_horas}h <span style="color:var(--c-faint);font-size:11px">${tB}b</span></td>
+      <td style="text-align:center">${pB ? `${d.p_horas}h <span style="color:var(--c-faint);font-size:11px">${pB}b</span>${split ? ' <span class="badge b-red">✂ A+B</span>' : ''}` : '<span style="color:var(--c-faint)">—</span>'}</td>
+      <td>${pB ? `<span class="badge b-yellow">${d.lab||'Lab'}</span>` : '<span style="color:var(--c-faint)">—</span>'}</td>
+      <td style="font-size:12px">${turmaBadges} <span style="color:var(--c-muted)">${ativas.length}/${turmas.length} ativa${turmas.length!==1?'s':''}</span></td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-secondary btn-sm btn-icon" onclick="editDisc(${ri})" aria-label="Editar ${d.id}">✏</button>
+        <button class="btn btn-del       btn-sm btn-icon" onclick="delDisc(${ri})"  aria-label="Remover ${d.id}">🗑</button>
+      </td></tr>`;
+  }).join('');
+}
+
+function profOptionsHTML(selectedId) {
+  return '<option value="">— Auto (round-robin) —</option>' +
+    S.professores.map(p => `<option value="${p.id}"${p.id===selectedId?' selected':''}>${p.nome} (${p.unidade})</option>`).join('');
+}
+
+function renderTurmasEditor() {
+  document.getElementById('tbody-turmas').innerHTML = (S.editTurmas || []).map((t, i) => `
+    <tr>
+      <td><input style="width:70px" value="${escAttr(t.turma)}" placeholder="ex: S" oninput="S.editTurmas[${i}].turma=this.value"></td>
+      <td><input type="number" style="width:70px" min="1" value="${t.alunos ?? S.config.alunosPorTurma}" oninput="S.editTurmas[${i}].alunos=+this.value||${S.config.alunosPorTurma}"></td>
+      <td><select onchange="S.editTurmas[${i}].professorId=this.value||null">${profOptionsHTML(t.professorId)}</select></td>
+      <td><select onchange="S.editTurmas[${i}].situacao=this.value">
+        <option${t.situacao!=='Inativa'?' selected':''}>Ativa</option>
+        <option${t.situacao==='Inativa'?' selected':''}>Inativa</option>
+      </select></td>
+      <td style="text-align:center"><input type="checkbox" ${t.necessidadesEspeciais?'checked':''} onchange="S.editTurmas[${i}].necessidadesEspeciais=this.checked"></td>
+      <td><input style="width:140px" value="${escAttr(t.observacao)}" placeholder="opcional" oninput="S.editTurmas[${i}].observacao=this.value"></td>
+      <td><button class="btn btn-del btn-sm btn-icon" type="button" onclick="removeTurmaRow(${i})" aria-label="Remover turma">🗑</button></td>
+    </tr>`).join('') || '<tr class="empty"><td colspan="7">Nenhuma turma — adicione ao menos uma.</td></tr>';
+}
+function addTurmaRow() { S.editTurmas.push(novaTurma()); renderTurmasEditor(); }
+function removeTurmaRow(i) { S.editTurmas.splice(i, 1); renderTurmasEditor(); }
+
+function novaDisc() {
+  S.editDisc = null;
+  document.getElementById('panel-disc-h').textContent = 'Nova Disciplina';
+  ['di-id','di-nome'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('di-unidade').value = 'FACOM';
+  document.getElementById('di-grupo').value = '';
+  document.getElementById('di-periodo').value = '1';
+  document.getElementById('di-t').value = 60;
+  document.getElementById('di-p').value = 0;
+  document.getElementById('di-lab').value = 'Lab';
+  document.getElementById('di-lab-custom').style.display = 'none';
+  document.getElementById('di-lab-wrap').style.display = 'none';
+  S.editTurmas = [{ ...novaTurma(), turma: 'S' }];
+  renderTurmasEditor();
+  atuBlocos();
+  abrirPanel('disc');
+  setTimeout(() => document.getElementById('di-id').focus(), 50);
+}
+
+function editDisc(idx) {
+  S.editDisc = idx;
+  const d = S.disciplinas[idx];
+  document.getElementById('panel-disc-h').textContent = `Editar: ${d.id}`;
+  document.getElementById('di-id').value = d.id;
+  document.getElementById('di-nome').value = d.nome;
+  document.getElementById('di-unidade').value = d.unidade || 'FACOM';
+  document.getElementById('di-grupo').value = d.grupo || '';
+  document.getElementById('di-periodo').value = d.periodo;
+  document.getElementById('di-t').value = d.t_horas;
+  document.getElementById('di-p').value = d.p_horas;
+  const known = ['Lab','Lab_Sistemas_Digitais'];
+  if (known.includes(d.lab)) {
+    document.getElementById('di-lab').value = d.lab;
+    document.getElementById('di-lab-custom').style.display = 'none';
+  } else {
+    document.getElementById('di-lab').value = '__outro__';
+    document.getElementById('di-lab-custom').style.display = '';
+    document.getElementById('di-lab-custom').value = d.lab || '';
+  }
+  document.getElementById('di-lab-wrap').style.display = hToB(d.p_horas) > 0 ? '' : 'none';
+  S.editTurmas = (d.turmas || []).map(t => ({ ...t }));
+  if (!S.editTurmas.length) S.editTurmas = [{ ...novaTurma(), turma: 'S' }];
+  renderTurmasEditor();
+  atuBlocos();
+  abrirPanel('disc');
+}
+
+function atuBlocos() {
+  const t = +document.getElementById('di-t').value || 0;
+  const p = +document.getElementById('di-p').value || 0;
+  document.getElementById('di-t-bl').textContent = `${hToB(t)} bloco(s)/sem`;
+  document.getElementById('di-p-bl').textContent = `${hToB(p)} bloco(s)/sem`;
+  document.getElementById('di-lab-wrap').style.display = p > 0 ? '' : 'none';
+}
+function onLabChange() {
+  document.getElementById('di-lab-custom').style.display =
+    document.getElementById('di-lab').value === '__outro__' ? '' : 'none';
+}
+
+function salvarDisc() {
+  const id = document.getElementById('di-id').value.trim();
+  const nome = document.getElementById('di-nome').value.trim();
+  if (!id || !nome) { toast('Código e Nome são obrigatórios', 'err'); return; }
+  const turmas = (S.editTurmas || []).map(t => ({ ...t, turma: (t.turma || '').trim() }));
+  if (!turmas.length) { toast('Cadastre ao menos uma turma', 'err'); return; }
+  if (turmas.some(t => !t.turma)) { toast('Todas as turmas precisam de um código', 'err'); return; }
+  const codigos = turmas.map(t => t.turma);
+  if (new Set(codigos).size !== codigos.length) { toast('Códigos de turma devem ser únicos dentro da disciplina', 'err'); return; }
+  const labSel = document.getElementById('di-lab').value;
+  const lab = labSel === '__outro__' ? (document.getElementById('di-lab-custom').value.trim() || 'Lab') : labSel;
+  const grupo = document.getElementById('di-grupo').value.trim();
+  if (grupo && !S.grupos.includes(grupo)) { S.grupos.push(grupo); S.grupos.sort(); atuDatalistGrupos(); }
+  const disc = {
+    id, nome,
+    unidade:   document.getElementById('di-unidade').value,
+    grupo,
+    periodo:   +document.getElementById('di-periodo').value,
+    t_horas:   +document.getElementById('di-t').value || 0,
+    p_horas:   +document.getElementById('di-p').value || 0,
+    lab,
+    turmas,
+  };
+  if (S.editDisc === null) S.disciplinas.push(disc);
+  else S.disciplinas[S.editDisc] = disc;
+  renderDiscs(); atuBadges(); fecharDisc();
+  toast(`Disciplina "${id}" salva`, 'ok'); autoSave();
+}
+function delDisc(i) {
+  if (!confirm(`Remover "${S.disciplinas[i].id}"?`)) return;
+  S.disciplinas.splice(i, 1);
+  renderDiscs(); atuBadges(); autoSave();
+}
+function fecharDisc() { fecharPanel('disc'); }
+
+function onImportDisc(ev) {
+  lerArquivoJSON(ev, data => {
+    const lista = Array.isArray(data) ? data : (data.disciplinas || []);
+    if (!lista.length) { toast('Nenhuma disciplina encontrada no JSON', 'err'); return; }
+    lista.forEach(migrarDisciplina);
+    lista.forEach(d => { if (d.grupo && !S.grupos.includes(d.grupo)) S.grupos.push(d.grupo); });
+    S.grupos.sort();
+    S.disciplinas = lista;
+    atuDatalistGrupos(); renderDiscs(); atuBadges();
+    toast(`${lista.length} disciplinas importadas`, 'ok'); autoSave();
+  });
+}
+
+// ── Professores ───────────────────────────────────────────────────────────────
+function buildPrefGrid() {
+  document.getElementById('pref-grid').innerHTML = BLOCOS.map(b => `
+    <div class="pref-cell">
+      <span>${b}</span>
+      <input type="number" id="pf-${b}" min="1" max="10" value="6"
+             aria-label="Preferência ${b}"
+             oninput="colorPref('${b}')">
+    </div>`).join('');
+}
+
+function colorPref(b) {
+  const inp = document.getElementById(`pf-${b}`);
+  const v = +inp.value || 6;
+  inp.classList.remove('pref-low', 'pref-high');
+  if (v <= 2) inp.classList.add('pref-low');
+  else if (v >= 8) inp.classList.add('pref-high');
+}
+
+function buildIndispGrid() {
+  const tbl = document.getElementById('indisp-grid');
+  tbl.innerHTML =
+    `<tr><th scope="col"></th>${DIAS.map(d => `<th scope="col">${d}</th>`).join('')}</tr>` +
+    BLOCOS.map(b =>
+      `<tr><th scope="row">${b}</th>${DIAS.map(d =>
+        `<td class="${['M1','T3'].includes(b) ? 'critico' : ''}">
+          <input type="checkbox" id="in-${d}-${b}" aria-label="${d} ${b}">
+        </td>`).join('')}</tr>`
+    ).join('');
+}
+
+function renderProfs() {
+  const tbody = document.getElementById('tbody-prof');
+  if (!S.professores.length) {
+    tbody.innerHTML = '<tr class="empty"><td colspan="6">Nenhum professor cadastrado.<br><small>Use <strong>Carregar CSV da UFU</strong> para importar os professores ativos.</small></td></tr>';
+    return;
+  }
+  tbody.innerHTML = S.professores.map((p, i) => {
+    const pr = p.preferencias || {};
+    const prefStr = BLOCOS.map(b => {
+      const v = pr[b] || 6;
+      const cls = v <= 2 ? 'pref-lo' : v >= 8 ? 'pref-hi' : 'pref-md';
+      return `<span class="${cls}">${b}:${v}</span>`;
+    }).join(' ');
+    const indisp = (p.indisponibilidades || [])
+      .map(sl => `<span style="background:var(--c-warn-bg);color:var(--c-warn-text);padding:1px 5px;border-radius:4px;font-size:10px">${sl.dia}&nbsp;${sl.bloco}</span>`)
+      .join(' ') || '<span style="color:var(--c-faint);font-size:11px">—</span>';
+    return `<tr>
+      <td style="font-family:ui-monospace,monospace;font-size:11px;color:var(--c-muted)">${p.id}</td>
+      <td style="font-weight:500">${p.nome}</td>
+      <td><span class="badge ${p.unidade === 'FACOM' ? 'b-blue' : 'b-green'}">${p.unidade}</span></td>
+      <td style="line-height:2">${prefStr}</td>
+      <td>${indisp}</td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-secondary btn-sm btn-icon" onclick="editProf(${i})" aria-label="Editar ${p.nome}">✏</button>
+        <button class="btn btn-del       btn-sm btn-icon" onclick="delProf(${i})"  aria-label="Remover ${p.nome}">🗑</button>
+      </td></tr>`;
+  }).join('');
+}
+
+function novoProf() {
+  S.editProf = null;
+  document.getElementById('panel-prof-h').textContent = 'Novo Professor';
+  document.getElementById('pr-id').value = '';
+  document.getElementById('pr-nome').value = '';
+  document.getElementById('pr-unidade').value = 'FACOM';
+  BLOCOS.forEach(b => {
+    const inp = document.getElementById(`pf-${b}`);
+    inp.value = b === 'M1' || b === 'T3' ? 2 : b === 'M2' || b === 'T2' ? 10 : 6;
+    colorPref(b);
+  });
+  DIAS.forEach(d => BLOCOS.forEach(b => { document.getElementById(`in-${d}-${b}`).checked = false; }));
+  abrirPanel('prof');
+  setTimeout(() => document.getElementById('pr-nome').focus(), 50);
+}
+
+function editProf(idx) {
+  S.editProf = idx;
+  const p = S.professores[idx];
+  document.getElementById('panel-prof-h').textContent = `Editar: ${p.nome}`;
+  document.getElementById('pr-id').value = p.id;
+  document.getElementById('pr-nome').value = p.nome;
+  document.getElementById('pr-unidade').value = p.unidade || 'FACOM';
+  const pr = p.preferencias || {};
+  BLOCOS.forEach(b => { document.getElementById(`pf-${b}`).value = pr[b] ?? 6; colorPref(b); });
+  DIAS.forEach(d => BLOCOS.forEach(b => { document.getElementById(`in-${d}-${b}`).checked = false; }));
+  (p.indisponibilidades || []).forEach(sl => {
+    const el = document.getElementById(`in-${sl.dia}-${sl.bloco}`);
+    if (el) el.checked = true;
+  });
+  abrirPanel('prof');
+}
+
+function salvarProf() {
+  const id   = document.getElementById('pr-id').value.trim();
+  const nome = document.getElementById('pr-nome').value.trim();
+  if (!id || !nome) { toast('SIAPE e Nome são obrigatórios', 'err'); return; }
+  const prefs = {};
+  BLOCOS.forEach(b => { prefs[b] = +document.getElementById(`pf-${b}`).value || 6; });
+  const indisp = [];
+  DIAS.forEach(d => BLOCOS.forEach(b => {
+    if (document.getElementById(`in-${d}-${b}`).checked) indisp.push({ dia: d, bloco: b });
+  }));
+  const prof = { id, nome, unidade: document.getElementById('pr-unidade').value,
+                 preferencias: prefs, indisponibilidades: indisp };
+  if (S.editProf === null) S.professores.push(prof);
+  else S.professores[S.editProf] = prof;
+  renderProfs(); atuBadges(); fecharProf();
+  toast(`Professor "${nome}" salvo`, 'ok'); autoSave();
+}
+function delProf(i) {
+  if (!confirm(`Remover "${S.professores[i].nome}"?`)) return;
+  S.professores.splice(i, 1);
+  renderProfs(); atuBadges(); autoSave();
+}
+function fecharProf() { fecharPanel('prof'); }
+
+async function carregarCSV() {
+  try {
+    toast('Carregando CSV da UFU…');
+    const res  = await fetch('/api/csv/professores');
+    const lista = await res.json();
+    if (!Array.isArray(lista)) { toast('Erro ao ler CSV', 'err'); return; }
+    let adicionados = 0;
+    lista.forEach(p => {
+      if (S.professores.find(x => x.id === p.id)) return;
+      S.professores.push({
+        ...p,
+        preferencias: p.unidade === 'FACOM'
+          ? { M1:2, M2:10, M3:6, T1:6,  T2:10, T3:2 }
+          : { M1:2, M2:8,  M3:6, T1:10, T2:8,  T3:2 },
+        indisponibilidades: [],
+      });
+      adicionados++;
+    });
+    renderProfs(); atuBadges();
+    toast(`${adicionados} professores importados do CSV`, 'ok'); autoSave();
+  } catch {
+    toast('Servidor não encontrado — execute: node js/server.js', 'err');
+  }
+}
+
+function onImportProf(ev) {
+  lerArquivoJSON(ev, data => {
+    const lista = Array.isArray(data) ? data : (data.professores || []);
+    if (!lista.length) { toast('Nenhum professor encontrado', 'err'); return; }
+    S.professores = lista;
+    renderProfs(); atuBadges();
+    toast(`${lista.length} professores importados`, 'ok'); autoSave();
+  });
+}
+
+// ── Salas ─────────────────────────────────────────────────────────────────────
+function renderSalas() {
+  const tbody = document.getElementById('tbody-sala');
+  if (!S.salas.length) {
+    tbody.innerHTML = '<tr class="empty"><td colspan="4">Nenhuma sala cadastrada.<br><small>Clique em <strong>Gerar padrão UFU</strong> para criar a configuração padrão (10 salas + 4 labs).</small></td></tr>';
+    return;
+  }
+  tbody.innerHTML = S.salas.map((s, i) =>
+    `<tr>
+      <td style="font-family:ui-monospace,monospace;font-weight:500">${s.id}</td>
+      <td><span class="badge ${s.tipo === 'Normal' ? 'b-blue' : 'b-yellow'}">${s.tipo}</span></td>
+      <td style="text-align:center;color:var(--c-muted)">${s.capacidade}</td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-secondary btn-sm btn-icon" onclick="editSala(${i})" aria-label="Editar ${s.id}">✏</button>
+        <button class="btn btn-del       btn-sm btn-icon" onclick="delSala(${i})"  aria-label="Remover ${s.id}">🗑</button>
+      </td></tr>`
+  ).join('');
+}
+
+function novaSala() {
+  S.editSala = null;
+  document.getElementById('panel-sala-h').textContent = 'Nova Sala';
+  const normais = S.salas.filter(s => s.tipo === 'Normal').length;
+  document.getElementById('sl-id').value = `Sala_${String(normais + 1).padStart(2, '0')}`;
+  document.getElementById('sl-tipo').value = 'Normal';
+  document.getElementById('sl-tipo-custom').style.display = 'none';
+  document.getElementById('sl-cap').value = 60;
+  abrirPanel('sala');
+}
+
+function editSala(idx) {
+  S.editSala = idx;
+  const s = S.salas[idx];
+  document.getElementById('panel-sala-h').textContent = `Editar: ${s.id}`;
+  document.getElementById('sl-id').value = s.id;
+  document.getElementById('sl-cap').value = s.capacidade;
+  const known = ['Normal','Lab','Lab_Sistemas_Digitais'];
+  if (known.includes(s.tipo)) {
+    document.getElementById('sl-tipo').value = s.tipo;
+    document.getElementById('sl-tipo-custom').style.display = 'none';
+  } else {
+    document.getElementById('sl-tipo').value = '__outro__';
+    document.getElementById('sl-tipo-custom').style.display = '';
+    document.getElementById('sl-tipo-custom').value = s.tipo;
+  }
+  abrirPanel('sala');
+}
+
+function onSalaTipoChange() {
+  document.getElementById('sl-tipo-custom').style.display =
+    document.getElementById('sl-tipo').value === '__outro__' ? '' : 'none';
+}
+
+function salvarSala() {
+  const id  = document.getElementById('sl-id').value.trim();
+  const cap = +document.getElementById('sl-cap').value || 40;
+  if (!id) { toast('ID é obrigatório', 'err'); return; }
+  const tipoSel = document.getElementById('sl-tipo').value;
+  const tipo = tipoSel === '__outro__'
+    ? (document.getElementById('sl-tipo-custom').value.trim() || 'Lab') : tipoSel;
+  const sala = { id, tipo, capacidade: cap };
+  if (S.editSala === null) S.salas.push(sala);
+  else S.salas[S.editSala] = sala;
+  renderSalas(); atuBadges(); fecharSala();
+  toast(`Sala "${id}" salva`, 'ok'); autoSave();
+}
+function delSala(i) {
+  if (!confirm(`Remover "${S.salas[i].id}"?`)) return;
+  S.salas.splice(i, 1);
+  renderSalas(); atuBadges(); autoSave();
+}
+function fecharSala() { fecharPanel('sala'); }
+
+function gerarSalasUFU() {
+  if (S.salas.length && !confirm('Substituir as salas atuais pelo padrão UFU?')) return;
+  S.salas = [];
+  for (let i = 1; i <= 10; i++)
+    S.salas.push({ id: `Sala_${String(i).padStart(2,'0')}`, tipo: 'Normal', capacidade: 60 });
+  for (let i = 1; i <= 3; i++)
+    S.salas.push({ id: `Lab_Comp_${i}`, tipo: 'Lab', capacidade: 40 });
+  S.salas.push({ id: 'Lab_Sist_Digitais', tipo: 'Lab_Sistemas_Digitais', capacidade: 40 });
+  renderSalas(); atuBadges();
+  toast('14 salas criadas: 10 normais + 3 labs computação + 1 lab SD', 'ok'); autoSave();
+}
+
+// ── Config ────────────────────────────────────────────────────────────────────
+function salvarConfig() {
+  S.config.alunosPorTurma      = +document.getElementById('cfg-alunos').value  || 45;
+  S.config.capacidadeLabPadrao = +document.getElementById('cfg-cap-lab').value || 40;
+  S.config.horariosCriticos    = document.getElementById('cfg-criticos').value.split(',').map(s => s.trim()).filter(Boolean);
+  S.config.tempoSolver         = +document.getElementById('cfg-tempo').value   || 60;
+  toast('Configurações salvas', 'ok'); autoSave();
+}
+
+// ── Solver input ──────────────────────────────────────────────────────────────
+function buildInput() {
+  const cap       = S.config.capacidadeLabPadrao;
+  const alunosDef = S.config.alunosPorTurma;
+  const ORDEM = ['algoritmos','bd','calculo','engenharia','estatistica',
+    'fundamentos','hardware','ia','matematica','programacao','redes','sistemas','tcc','teoria'];
+  const discOrd = [...S.disciplinas].sort((a, b) => {
+    const ga = ORDEM.indexOf(a.grupo ?? 'zzz'), gb = ORDEM.indexOf(b.grupo ?? 'zzz');
+    return ga !== gb ? ga - gb : a.periodo - b.periodo;
+  });
+  const facom = S.professores.filter(p => p.unidade === 'FACOM');
+  const famat = S.professores.filter(p => p.unidade === 'FAMAT');
+  let pFC = 0, pFM = 0;
+  const demandas = [];
+  discOrd.forEach(d => {
+    const tB = hToB(d.t_horas), pB = hToB(d.p_horas);
+    if (!tB && !pB) return;
+    turmasAtivas(d).forEach(t => {
+      let prof = t.professorId ? S.professores.find(p => p.id === t.professorId) : null;
+      if (!prof) {
+        const pool = d.unidade === 'FACOM' ? facom : famat;
+        const ptr  = d.unidade === 'FACOM' ? pFC++ : pFM++;
+        prof = pool[ptr % pool.length];
+      }
+      if (!prof) return;
+      const al  = t.alunos ?? alunosDef;
+      const tag = `${d.id}~${t.turma}`;
+      const rot = `${d.id}/${t.turma} - ${d.nome}`;
+      if (tB) demandas.push({ id:`${tag}_TEORIA`, prof:prof.id, disc:`${rot} (Teoria)`, periodo:d.periodo, tipo_sala:'Normal', blocos_necessarios:tB });
+      if (pB) {
+        if (al > cap) {
+          ['A','B'].forEach(sub => demandas.push({ id:`${tag}_PRATICA_${sub}`, prof:prof.id, disc:`${rot} (Lab ${sub})`, periodo:d.periodo, tipo_sala:d.lab||'Lab', blocos_necessarios:pB }));
+        } else {
+          demandas.push({ id:`${tag}_PRATICA`, prof:prof.id, disc:`${rot} (Lab)`, periodo:d.periodo, tipo_sala:d.lab||'Lab', blocos_necessarios:pB });
+        }
+      }
+    });
+  });
+  return {
+    salas: S.salas,
+    professores: S.professores.map(p => ({ id:p.id, nome:p.nome, preferencias:p.preferencias||{}, indisponibilidades:p.indisponibilidades||[] })),
+    demandas,
+    config: { horarios_criticos: S.config.horariosCriticos },
+  };
+}
+
+// ── Export / Otimizar ─────────────────────────────────────────────────────────
+function exportarJSON() {
+  const blob = new Blob([JSON.stringify(buildInput(), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'cenario_sodd.json'; a.click();
+  toast('JSON exportado', 'ok');
+}
+
+function exportarRelatorio() {
+  const conteudo = document.getElementById('resultado')?.innerHTML || '';
+  if (!conteudo.trim()) { toast('Nenhum resultado para exportar — rode a otimização primeiro', 'err'); return; }
+  const nomeExp  = document.getElementById('nome-exp')?.value || 'Resultado';
+  // Extrai o CSS do documento atual para manter o visual idêntico
+  const estilos  = [...document.styleSheets].map(ss => {
+    try { return [...ss.cssRules].map(r => r.cssText).join('\n'); } catch { return ''; }
+  }).join('\n');
+  const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${nomeExp} — SODD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; margin: 32px; background: oklch(97% 0.007 258); color: oklch(33% 0.013 258); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+${estilos}
+/* overrides para modo standalone */
+.rep-section { margin-bottom: 28px; }
+details[open] summary { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+${conteudo}
+</body>
+</html>`;
+  const slug = nomeExp.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '').substring(0, 40) || 'resultado';
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = `sodd_${slug}.html`; a.click();
+  toast('Relatório exportado', 'ok');
+}
+
+async function otimizar() {
+  if (!S.disciplinas.length || !S.professores.length || !S.salas.length) {
+    toast('Configure disciplinas, professores e salas antes de otimizar', 'err'); return;
+  }
+  const btn    = document.getElementById('btn-otm');
+  const status = document.getElementById('otm-status');
+  btn.disabled = true; btn.textContent = 'Otimizando…';
+  status.style.display = 'block';
+  status.innerHTML = 'Solver CP-SAT em execução — aguarde…';
+  document.getElementById('resultado-wrap').style.display = 'none';
+  const input = buildInput(); // capturado antes do fetch para uso no relatório
+  try {
+    const res = await fetch('/api/otimizar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input)
+    });
+    const r = await res.json();
+    renderResultado(r, input);
+    const cls = r.status === 'OPTIMAL' ? 'st-ok' : r.status === 'FEASIBLE' ? 'st-warn' : 'st-err';
+    status.innerHTML = `<span class="${cls}">${r.status}</span> — ${(r.tempo_execucao||0).toFixed(2)}s · ${r.pontuacao_objetivo||0} pts · ${(r.alocacoes||[]).length} alocações`;
+  } catch (e) {
+    status.innerHTML = `<span class="st-err">Erro:</span> ${e.message} — verifique se o servidor está rodando`;
+  } finally {
+    btn.disabled = false; btn.textContent = 'Iniciar Otimização';
+  }
+}
+
+const MAP_HORA   = { M1:'07:10', M2:'08:50', M3:'10:40', T1:'13:10', T2:'14:50', T3:'16:50' };
+const BLOCOS_ALL = ['M1','M2','M3','T1','T2','T3'];
+const CRITICOS   = new Set(['M1','T3']);
+
+// ── Seção T/P — calculada a partir do input (antes do solver) ─────────────────
+function relatarCargasHTML(input) {
+  const discMap = {};
+  (input.demandas || []).forEach(s => {
+    let baseId, tipo;
+    if      (s.id.endsWith('_TEORIA'))    { baseId = s.id.replace(/_TEORIA$/, '');    tipo = 'teoria'; }
+    else if (s.id.endsWith('_PRATICA_A')) { baseId = s.id.replace(/_PRATICA_A$/, ''); tipo = 'pratica_a'; }
+    else if (s.id.endsWith('_PRATICA_B')) { baseId = s.id.replace(/_PRATICA_B$/, ''); tipo = 'pratica_b'; }
+    else if (s.id.endsWith('_PRATICA'))   { baseId = s.id.replace(/_PRATICA$/, '');   tipo = 'pratica'; }
+    else                                  { baseId = s.id;                             tipo = 'teoria'; }
+    const [discId, turma] = baseId.split('~');
+
+    if (!discMap[baseId]) discMap[baseId] = { discId, turma: turma || '', periodo: s.periodo, teoriaB: 0, praticaB: 0, split: false, lab: s.tipo_sala, numSessoes: 0 };
+    const e = discMap[baseId];
+    if      (tipo === 'teoria')   { e.teoriaB = s.blocos_necessarios; e.numSessoes++; }
+    else if (tipo === 'pratica')  { e.praticaB = s.blocos_necessarios; e.lab = s.tipo_sala; e.numSessoes++; }
+    else if (tipo === 'pratica_a'){ e.praticaB = s.blocos_necessarios; e.lab = s.tipo_sala; if (!e.split) { e.split = true; e.numSessoes += 2; } }
+    // pratica_b: já contabilizado em pratica_a
+  });
+
+  const totalDiscs = Object.keys(discMap).length;
+  const comPratica = Object.values(discMap).filter(d => d.praticaB > 0).length;
+  const comSplit   = Object.values(discMap).filter(d => d.split).length;
+  const totalSess  = (input.demandas || []).length;
+
+  let linhas = '';
+  Object.values(discMap)
+    .sort((a, b) => a.periodo - b.periodo || a.discId.localeCompare(b.discId) || a.turma.localeCompare(b.turma))
+    .forEach(d => {
+      const disc     = S.disciplinas.find(x => x.id === d.discId);
+      const nomeDsc  = disc?.nome || d.discId;
+      const turmaObj = disc?.turmas?.find(t => t.turma === d.turma);
+      const splitStr = d.praticaB > 0 ? (d.split ? '✂ A+B' : '—') : '—';
+      const labStr   = d.praticaB > 0 && d.lab && d.lab !== 'Normal' ? d.lab : '—';
+      const necEsp   = turmaObj?.necessidadesEspeciais
+        ? '<span class="badge b-yellow">♿ Sim</span>' : '<span style="color:var(--c-faint)">—</span>';
+      const obs      = turmaObj?.observacao
+        ? escAttr(turmaObj.observacao) : '<span style="color:var(--c-faint)">—</span>';
+      linhas += `<tr${d.split ? ' style="background:var(--c-warn-bg)"' : ''}>
+        <td style="font-family:monospace;font-size:11px">${d.discId}</td>
+        <td style="text-align:center"><span class="badge b-blue">${d.turma || '—'}</span></td>
+        <td style="text-align:left">${nomeDsc}</td>
+        <td style="text-align:center">${d.periodo}º</td>
+        <td style="text-align:center;color:${d.teoriaB  > 0 ? 'var(--c-ok-text)'   : 'var(--c-faint)'};font-weight:${d.teoriaB  > 0 ? '600' : '400'}">${d.teoriaB  || '—'}</td>
+        <td style="text-align:center;color:${d.praticaB > 0 ? 'var(--c-warn-text)' : 'var(--c-faint)'};font-weight:${d.praticaB > 0 ? '600' : '400'}">${d.praticaB || '—'}</td>
+        <td style="font-size:11px;color:var(--c-muted)">${labStr}</td>
+        <td style="text-align:center;color:${d.split ? 'var(--c-danger-text)' : 'var(--c-faint)'};font-weight:${d.split ? '700' : '400'}">${splitStr}</td>
+        <td style="text-align:center;font-weight:700;color:var(--c-accent-text)">${d.numSessoes}</td>
+        <td style="text-align:center">${necEsp}</td>
+        <td style="font-size:11px;color:var(--c-muted);max-width:200px">${obs}</td>
+      </tr>`;
+    });
+
+  return `<div class="rep-section">
+    <h3 class="rep-h3">Verificação de Cargas T/P
+      <small style="color:var(--c-muted);font-weight:400;margin-left:6px">diagnóstico pré-otimização das componentes teórico-práticas</small>
+    </h3>
+    <div class="bdg-row">
+      <span class="bdg bdg-ok">📚 ${totalDiscs} turma(s)</span>
+      <span class="bdg bdg-warn">🔬 ${comPratica} com prática</span>
+      <span class="bdg bdg-err">✂ ${comSplit} com split A+B</span>
+      <span class="bdg bdg-ok">📦 ${totalSess} sessões ao solver</span>
+    </div>
+    <details style="margin-top:4px">
+      <summary style="cursor:pointer;font-size:12px;color:var(--c-accent);padding:4px 0">▶ Ver tabela completa (${totalDiscs} turma(s))</summary>
+      <div style="overflow-x:auto;margin-top:10px">
+        <table class="rep-tbl" style="font-size:12px">
+          <thead><tr>
+            <th>Código</th><th>Turma</th><th>Disciplina</th><th>Per.</th>
+            <th>Teoria<br><small style="font-weight:400">(bl/sem)</small></th>
+            <th>Prática<br><small style="font-weight:400">(bl/sem)</small></th>
+            <th>Lab</th><th>Split?</th><th>Sessões</th><th>Nec.<br>esp.</th><th>Observação</th>
+          </tr></thead>
+          <tbody>${linhas}</tbody>
+        </table>
+      </div>
+    </details>
+  </div>`;
+}
+
+// ── Relatório completo pós-solver ─────────────────────────────────────────────
+function renderResultado(r, input) {
+  const wrap = document.getElementById('resultado-wrap');
+  const div  = document.getElementById('resultado');
+  wrap.style.display = 'block';
+
+  if (r.status !== 'OPTIMAL' && r.status !== 'FEASIBLE') {
+    div.innerHTML = `<p style="color:var(--c-danger);font-size:14px;padding:8px 0">
+      ⛔ Sem solução viável. Tente aumentar o número de salas ou reduzir a carga horária.
+    </p>`;
+    return;
+  }
+
+  const alocacoes  = r.alocacoes   || [];
+  const salasTurma = r.salas_turma || {};
+  const periodos   = [...new Set(alocacoes.map(a => a.Periodo))].sort();
+
+  // ── 1. Resumo ──────────────────────────────────────────────────────────────
+  const todosB  = (r.relatorio_professores || []).flatMap(p => (p.sessoes_alocadas || []).filter(s => s.status !== 'bonus'));
+  const nAtend  = todosB.filter(s => s.status === 'atendido').length;
+  const nNeutro = todosB.filter(s => s.status === 'neutro').length;
+  const nCrit   = todosB.filter(s => s.status === 'critico').length;
+  const pctAt   = todosB.length ? Math.round(nAtend / todosB.length * 100) : 0;
+  const clsSt   = r.status === 'OPTIMAL' ? 'bdg-ok' : 'bdg-warn';
+  const nomeExp = document.getElementById('nome-exp')?.value || 'Experimento';
+
+  // Contagens de uso real
+  const salasUsadas   = new Set(alocacoes.map(a => a.Sala)).size;
+  const profsUsados   = new Set(alocacoes.map(a => a['ProfessorId'] || a.Professor)).size;
+  const totalSalas    = (input?.salas || []).length;
+  const totalProfs    = (input?.professores || []).length;
+
+  const secResumo = `<div class="rep-section">
+    <h3 class="rep-h3" style="font-size:15px;margin-bottom:12px">${nomeExp}</h3>
+    <div class="bdg-row">
+      <span class="bdg ${clsSt}">${r.status}</span>
+      <span class="bdg bdg-neu">⏱ ${(r.tempo_execucao||0).toFixed(2)}s</span>
+      <span class="bdg bdg-ok">🎯 ${r.pontuacao_objetivo||0} pts</span>
+      <span class="bdg bdg-ok">📋 ${alocacoes.length} alocações</span>
+    </div>
+    <div class="bdg-row" style="margin-top:6px">
+      <span class="bdg bdg-ok">✅ Atendidos: ${nAtend}/${todosB.length} (${pctAt}%)</span>
+      <span class="bdg bdg-warn">➖ Neutros: ${nNeutro}</span>
+      <span class="bdg bdg-err">⚠ Críticos: ${nCrit}</span>
+    </div>
+    <div class="bdg-row" style="margin-top:6px">
+      <span class="bdg bdg-neu" title="O solver usa o mínimo de salas necessário">🏛 Salas usadas: ${salasUsadas}${totalSalas ? ` de ${totalSalas} disponíveis` : ''}</span>
+      <span class="bdg bdg-neu" title="Apenas professores com disciplinas atribuídas aparecem">👤 Professores na grade: ${(r.relatorio_professores||[]).filter(p=>p.blocos_total>0).length}${totalProfs ? ` de ${totalProfs} cadastrados` : ''}</span>
+    </div>
+    <p style="font-size:11px;color:var(--c-faint);margin:6px 0 0">
+      Salas e professores cadastrados mas não usados estão disponíveis — o solver utiliza o mínimo necessário para encaixar todas as sessões.
+    </p>
+  </div>`;
+
+  // ── 2. T/P ────────────────────────────────────────────────────────────────
+  const secTP = input ? relatarCargasHTML(input) : '';
+
+  // ── 3. Salas base ──────────────────────────────────────────────────────────
+  let linhasSala = '';
+  periodos.forEach(per => {
+    const numP     = per.replace('º Período', '').trim();
+    const salaBase = salasTurma[numP] || null;
+    const teo      = alocacoes.filter(a => a.Periodo === per && a.Tipo === 'Normal');
+    const naBase   = salaBase ? teo.filter(a => a.Sala === salaBase).length : 0;
+    const pct      = teo.length ? Math.round(naBase / teo.length * 100) : 0;
+    const cls      = pct >= 80 ? 'bdg-ok' : pct >= 50 ? 'bdg-warn' : 'bdg-err';
+    linhasSala += `<tr>
+      <td>${per}</td>
+      <td>${salaBase ? `🏠 <strong>${salaBase}</strong>` : '<em style="color:var(--c-faint)">nenhuma</em>'}</td>
+      <td><span class="bdg ${cls}" style="font-size:11px">${naBase}/${teo.length} (${pct}%)</span></td>
+    </tr>`;
+  });
+  const secSalas = `<div class="rep-section">
+    <h3 class="rep-h3">Salas Base por Período</h3>
+    <p style="font-size:12px;color:var(--c-muted);margin:0 0 10px">Concentração das aulas teóricas em sala fixa por turma. 🏠 = sala mais frequente do período.</p>
+    <div style="overflow-x:auto">
+      <table class="rep-tbl" style="max-width:460px">
+        <thead><tr><th>Período</th><th>Sala Base</th><th>Concentração (aulas teóricas)</th></tr></thead>
+        <tbody>${linhasSala}</tbody>
+      </table>
+    </div>
+  </div>`;
+
+  // ── 4. Grade por período ───────────────────────────────────────────────────
+  let secGrade = '';
+  periodos.forEach(per => {
+    const numP     = per.replace('º Período', '').trim();
+    const salaBase = salasTurma[numP] || null;
+    const aulas    = alocacoes.filter(a => a.Periodo === per);
+    const usados   = BLOCOS_ALL.filter(b => aulas.some(a => a.Bloco === b));
+    if (!usados.length) return;
+    const teo      = aulas.filter(a => a.Tipo === 'Normal');
+    const naBase   = salaBase ? teo.filter(a => a.Sala === salaBase).length : 0;
+    const pctS     = teo.length ? Math.round(naBase / teo.length * 100) : 0;
+    const badgeSala = salaBase
+      ? `<span class="bdg bdg-ok" style="font-size:11px;margin-left:8px">🏠 ${salaBase} (${pctS}%)</span>`
+      : '';
+    let rows = '';
+    usados.forEach(b => {
+      const crit = CRITICOS.has(b);
+      rows += `<tr><td class="hora${crit ? ' crit' : ''}">${MAP_HORA[b]}<br><small>${b}${crit ? ' ⚠' : ''}</small></td>`;
+      DIAS.forEach(d => {
+        const a = aulas.find(x => x.Dia === d && x.Bloco === b);
+        if (a) {
+          const home = salaBase && a.Sala === salaBase && a.Tipo === 'Normal';
+          rows += `<td${home ? ' class="cell-home"' : ''}>
+            <strong style="font-size:11px;display:block;color:var(--c-text)">${a.Materia.replace(/ \(.*\)$/, '').substring(0, 28)}</strong>
+            <span style="color:#b45309;font-size:10px">${a.Professor}</span><br>
+            <span style="font-size:10px;color:var(--c-ok-text)">${home ? '🏠 ' : ''}${a.Sala}</span>
+          </td>`;
+        } else {
+          rows += `<td class="vago">—</td>`;
+        }
+      });
+      rows += '</tr>';
+    });
+    secGrade += `<div class="rep-section">
+      <h3 class="rep-h3">${per} ${badgeSala}</h3>
+      <div style="overflow-x:auto">
+        <table class="grade-tbl">
+          <thead><tr><th>Horário</th>${DIAS.map(d => `<th>${d}</th>`).join('')}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  });
+
+  // ── 5. Auditoria docente ───────────────────────────────────────────────────
+  const icone = { atendido:'✅', neutro:'➖', critico:'⚠️', bonus:'⭐' };
+  const bgSt  = { atendido:'var(--c-ok-bg)', neutro:'var(--c-warn-bg)', critico:'var(--c-danger-bg)', bonus:'oklch(95% 0.02 200)' };
+  const corSt = { atendido:'var(--c-ok-text)', neutro:'var(--c-warn-text)', critico:'var(--c-danger-text)', bonus:'oklch(35% 0.1 200)' };
+
+  let rowsAudit = '';
+  (r.relatorio_professores || [])
+    .filter(p => p.blocos_total > 0)
+    .sort((a, b) => a.satisfacao_pct - b.satisfacao_pct)
+    .forEach(p => {
+      const dobras  = (r.carga_horaria || {})[p.nome]?.dobras ?? 0;
+      const cls     = p.satisfacao_pct >= 80 ? 'bdg-ok' : p.satisfacao_pct >= 50 ? 'bdg-warn' : 'bdg-err';
+      const sessoes = p.sessoes_alocadas || [];
+      const nA = sessoes.filter(s => s.status === 'atendido').length;
+      const nN = sessoes.filter(s => s.status === 'neutro').length;
+      const nC = sessoes.filter(s => s.status === 'critico').length;
+      const nB = sessoes.filter(s => s.status === 'bonus').length;
+
+      const indispBadges = (p.indisponibilidades || [])
+        .map(sl => `<span class="bdg" style="background:var(--c-warn-bg);color:var(--c-warn-text);font-size:11px;padding:2px 6px;margin:1px">${sl.dia}&nbsp;${sl.bloco}</span>`)
+        .join('') || '<span style="color:var(--c-faint);font-size:12px">—</span>';
+
+      const detalhes = sessoes.map(s => `
+        <tr style="background:${bgSt[s.status]||'transparent'}">
+          <td style="text-align:left">${icone[s.status]||''} ${s.materia}</td>
+          <td style="text-align:center">${s.dia}</td>
+          <td style="text-align:center">${s.bloco}</td>
+          <td style="text-align:center;color:${corSt[s.status]||'inherit'}">${s.peso} pts</td>
+          <td style="text-align:center">${s.status === 'bonus' ? '—' : `máx ${s.max_bloco} pts`}</td>
+        </tr>`).join('');
+
+      rowsAudit += `<tr>
+        <td>
+          <strong style="font-size:14px">${p.nome}</strong><br>
+          <small style="color:var(--c-muted);font-size:12px">✅${nA} ➖${nN} ⚠️${nC} ⭐${nB}</small>
+        </td>
+        <td style="text-align:center">${p.blocos_total}</td>
+        <td style="text-align:center;color:${dobras > 0 ? 'var(--c-warn-text)' : 'var(--c-ok-text)'}">${dobras}</td>
+        <td style="text-align:center;color:${p.criticos > 0 ? 'var(--c-danger-text)' : 'var(--c-ok-text)'};font-weight:700">${p.criticos}</td>
+        <td style="font-size:12px">${indispBadges}</td>
+        <td style="text-align:center">${p.pontuacao_prefs}</td>
+        <td style="text-align:center">${p.max_possivel}</td>
+        <td style="text-align:center"><span class="bdg ${cls}">${p.satisfacao_pct}%</span></td>
+        <td style="text-align:center;color:oklch(35% 0.1 200)">+${p.pontuacao_bonus}</td>
+        <td style="text-align:center;font-weight:700">${p.pontuacao_total}</td>
+        <td>
+          <details>
+            <summary style="cursor:pointer;font-size:12px;color:var(--c-accent)">Ver ${sessoes.length} alocações</summary>
+            <div style="overflow-x:auto;margin-top:6px">
+              <table class="rep-tbl" style="font-size:12px;min-width:360px">
+                <thead><tr><th>Disciplina</th><th>Dia</th><th>Bloco</th><th>Pontos</th><th>Limite</th></tr></thead>
+                <tbody>${detalhes}</tbody>
+              </table>
+            </div>
+          </details>
+        </td>
+      </tr>`;
+    });
+
+  const secAudit = `<div class="rep-section">
+    <h3 class="rep-h3">Auditoria de Satisfação Docente
+      <small style="color:var(--c-muted);font-weight:400;margin-left:6px">ordenado do menor para o maior % de satisfação</small>
+    </h3>
+    <p style="font-size:13px;color:var(--c-muted);margin:0 0 12px">
+      <strong>Pref. Obtida</strong> = soma dos pesos dos blocos alocados &nbsp;|&nbsp;
+      <strong>Pref. Máxima</strong> = pontuação se todos os blocos fossem no melhor horário possível &nbsp;|&nbsp;
+      <strong>Bônus</strong> = aulas geminadas (+50 pts cada)
+    </p>
+    <div style="overflow-x:auto">
+      <table class="rep-tbl audit-tbl">
+        <thead><tr>
+          <th>Professor</th><th>Bl/<br>sem</th><th>Dobras<br>Lab</th><th>Slots<br>Críticos</th>
+          <th>Indispon.</th><th>Pref.<br>Obtida</th><th>Pref.<br>Máxima</th>
+          <th>Satisfação</th><th>Bônus</th><th>Total</th><th>Sessões alocadas</th>
+        </tr></thead>
+        <tbody>${rowsAudit}</tbody>
+      </table>
+    </div>
+  </div>`;
+
+  // ── 6. Carga horária ───────────────────────────────────────────────────────
+  let rowsCarga = '';
+  Object.entries(r.carga_horaria || {})
+    .sort((a, b) => b[1].blocos - a[1].blocos)
+    .forEach(([nome, d]) => {
+      rowsCarga += `<tr>
+        <td>${nome}</td>
+        <td style="text-align:center">${d.blocos}</td>
+        <td style="text-align:center;color:${d.dobras > 0 ? 'var(--c-warn-text)' : 'var(--c-ok-text)'}">${d.dobras}</td>
+        <td>${d.dobras > 0 ? `⚠ ${d.dobras} disciplina(s) com turma A+B no lab` : '✅ Sem dobras'}</td>
+      </tr>`;
+    });
+  const secCarga = `<div class="rep-section">
+    <h3 class="rep-h3">Carga Horária Semanal e Dobras de Laboratório</h3>
+    <p style="font-size:12px;color:var(--c-muted);margin:0 0 10px">
+      Dobra = disciplina com mais de ${S.config.capacidadeLabPadrao} alunos matriculados, dividida em turmas A e B no laboratório.
+    </p>
+    <div style="overflow-x:auto">
+      <table class="rep-tbl" style="max-width:640px">
+        <thead><tr><th>Professor</th><th>Blocos/semana</th><th>Dobras</th><th>Observação</th></tr></thead>
+        <tbody>${rowsCarga}</tbody>
+      </table>
+    </div>
+  </div>`;
+
+  div.innerHTML = secResumo + secTP + secSalas + secGrade + secAudit + secCarga;
+}
+
+// ── Persistência ──────────────────────────────────────────────────────────────
+let _saveTimer = null;
+function autoSave() { clearTimeout(_saveTimer); _saveTimer = setTimeout(salvarCenario, 1200); }
+
+async function salvarCenario() {
+  const data = { disciplinas:S.disciplinas, professores:S.professores, salas:S.salas, grupos:S.grupos, config:S.config };
+  try {
+    await fetch('/api/cenario', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+  } catch {
+    localStorage.setItem('sodd_cenario', JSON.stringify(data));
+  }
+}
+
+async function carregarCenario() {
+  try {
+    const res  = await fetch('/api/cenario');
+    const data = await res.json();
+    aplicarCenario(data);
+  } catch {
+    const saved = localStorage.getItem('sodd_cenario');
+    if (saved) try { aplicarCenario(JSON.parse(saved)); } catch {}
+  }
+}
+
+function aplicarCenario(data) {
+  if (data.config)              Object.assign(S.config, data.config);
+  if (data.disciplinas?.length) S.disciplinas = data.disciplinas.map(migrarDisciplina);
+  if (data.professores?.length) S.professores = data.professores;
+  if (data.salas?.length)       S.salas       = data.salas;
+  if (data.grupos?.length)      S.grupos      = data.grupos;
+}
+
+function onImportCenario(ev) {
+  lerArquivoJSON(ev, data => {
+    aplicarCenario(data); inicUI();
+    toast('Cenário importado com sucesso', 'ok'); autoSave();
+  });
+}
+
+// ── Painéis ───────────────────────────────────────────────────────────────────
+const LAYOUTS = { disc:'layout-disc', prof:'layout-prof', sala:'layout-sala' };
+const PANELS  = { disc:'panel-disc',  prof:'panel-prof',  sala:'panel-sala'  };
+
+function abrirPanel(nome) {
+  document.getElementById(PANELS[nome]).classList.remove('hidden');
+  document.getElementById(LAYOUTS[nome]).classList.remove('full');
+}
+function fecharPanel(nome) {
+  document.getElementById(PANELS[nome]).classList.add('hidden');
+  document.getElementById(LAYOUTS[nome]).classList.add('full');
+}
+
+function lerArquivoJSON(ev, cb) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => { try { cb(JSON.parse(e.target.result)); } catch { toast('Arquivo JSON inválido', 'err'); } };
+  reader.readAsText(file);
+  ev.target.value = '';
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+function inicUI() {
+  atuDatalistGrupos();
+  renderDiscs(); renderProfs(); renderSalas(); atuBadges();
+  document.getElementById('cfg-alunos').value   = S.config.alunosPorTurma;
+  document.getElementById('cfg-cap-lab').value  = S.config.capacidadeLabPadrao;
+  document.getElementById('cfg-criticos').value = (S.config.horariosCriticos||[]).join(',');
+  document.getElementById('cfg-tempo').value    = S.config.tempoSolver || 60;
+}
+
+async function init() {
+  buildPrefGrid();
+  buildIndispGrid();
+  await carregarCenario();
+  inicUI();
+}
+init();
+</script>
+</body>
+</html>

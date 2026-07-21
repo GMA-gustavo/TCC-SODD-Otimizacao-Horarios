@@ -1,0 +1,49 @@
+# ─── Ferramentas de desenvolvimento ──────────────────────────────────────────
+.claude/
+.vscode/
+.idea/
+
+# ─── Dependências ────────────────────────────────────────────────────────────
+node_modules/
+package-lock.json
+
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ─── Dados pessoais — NUNCA versionar ────────────────────────────────────────
+# Quadro docente real da UFU: contém nome completo e SIAPE (matrícula funcional)
+# de servidores. Um repositório público é indexado permanentemente, então esses
+# arquivos ficam fora do versionamento por princípio.
+# Para reproduzir os experimentos, use o professores_exemplo.json (anonimizado),
+# que é versionado e produz resultados idênticos.
+professores_ativos*.csv
+professores_reais*.json
+# Cenário de comparação: contém nomes reais de docentes (prévia de distribuição).
+cenario_comparacao*.json
+# PDFs institucionais de origem (grade real e prévia de distribuição).
+horario_bcc*.pdf
+previa-distribuicao*.pdf
+
+# ─── Artefatos gerados ───────────────────────────────────────────────────────
+# Relatórios produzidos pela bateria de experimentos (regeneráveis com
+# `npm run otimizar`).
+js/grade_exp*.html
+
+# Estado de trabalho da interface: muda a cada edição do usuário.
+js/cenario_editado.json
+
+# Arquivo temporário da comunicação Node → Python.
+otimizador/_input_tmp.json
+
+# ─── Sistema operacional ─────────────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ─── Diversos ────────────────────────────────────────────────────────────────
+*.log
+tmp_*
+*.tmp
